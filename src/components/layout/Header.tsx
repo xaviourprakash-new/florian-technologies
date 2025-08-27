@@ -39,23 +39,24 @@ const Header: React.FC = () => {
 		"color": "#2C3E50",
 		"fontSize": "0.95rem",
 		"fontWeight": 500,
-		"px": 2.5,
-		"py": 1.2,
+		"px": 3,
+		"py": 1.5,
 		"borderRadius": "8px",
 		"position": "relative",
 		"overflow": "hidden",
-		"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-		"margin": "0 2px",
+		"transition": "all 0.3s ease",
+		"margin": "0 4px",
+		"backgroundColor": "transparent",
 		"&::before": {
 			content: '""',
 			position: "absolute",
 			bottom: 0,
 			left: "-100%",
 			width: "100%",
-			height: "3px",
+			height: "2px",
 			backgroundColor: "#2E7D32",
-			transition: "left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-			borderRadius: "2px 2px 0 0",
+			transition: "left 0.3s ease",
+			borderRadius: "1px 1px 0 0",
 		},
 		"&::after": {
 			content: '""',
@@ -64,16 +65,15 @@ const Header: React.FC = () => {
 			left: 0,
 			right: 0,
 			bottom: 0,
-			backgroundColor: "#E8F5E8",
+			backgroundColor: "rgba(46, 125, 50, 0.08)",
 			opacity: 0,
-			transition: "opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+			transition: "opacity 0.3s ease",
 			zIndex: -1,
+			borderRadius: "8px",
 		},
 		"&:hover": {
-			backgroundColor: "transparent",
-			transform: "translateY(-2px)",
-			boxShadow: "0 4px 12px rgba(46, 125, 50, 0.2)",
 			color: "#1B5E20",
+			transform: "translateY(-1px)",
 		},
 		"&:hover::before": {
 			left: 0,
@@ -87,10 +87,32 @@ const Header: React.FC = () => {
 			position="static"
 			elevation={0}
 			sx={{
-				backgroundColor: "#FFFFFF",
-				borderBottom: "1px solid #E0E0E0",
+				"backgroundColor": "#FFFFFF",
+				"borderBottom": "1px solid #E0E0E0",
+				"position": "relative",
+				"overflow": "hidden",
+				"&::after": {
+					content: '""',
+					position: "absolute",
+					top: 0,
+					right: 0,
+					width: "80%",
+					height: "100%",
+					backgroundImage: "url('/images/leafy_background.png')",
+					backgroundSize: "cover",
+					backgroundPosition: "right center",
+					backgroundRepeat: "no-repeat",
+					maskImage:
+						"linear-gradient(to right, transparent 0%, transparent 5%, rgba(0,0,0,0.005) 10%, rgba(0,0,0,0.01) 15%, rgba(0,0,0,0.015) 20%, rgba(0,0,0,0.02) 25%, rgba(0,0,0,0.03) 35%, rgba(0,0,0,0.04) 45%, rgba(0,0,0,0.06) 55%, rgba(0,0,0,0.08) 65%, rgba(0,0,0,0.12) 75%, rgba(0,0,0,0.18) 85%, rgba(0,0,0,0.25) 95%, rgba(0,0,0,0.3) 100%)",
+					WebkitMaskImage:
+						"linear-gradient(to right, transparent 0%, transparent 5%, rgba(0,0,0,0.005) 10%, rgba(0,0,0,0.01) 15%, rgba(0,0,0,0.015) 20%, rgba(0,0,0,0.02) 25%, rgba(0,0,0,0.03) 35%, rgba(0,0,0,0.04) 45%, rgba(0,0,0,0.06) 55%, rgba(0,0,0,0.08) 65%, rgba(0,0,0,0.12) 75%, rgba(0,0,0,0.18) 85%, rgba(0,0,0,0.25) 95%, rgba(0,0,0,0.3) 100%)",
+					opacity: 1,
+					pointerEvents: "none",
+					zIndex: 0,
+				},
 			}}>
-			<Toolbar sx={{ px: { xs: 2, md: 4 }, py: 0.5 }}>
+			<Toolbar
+				sx={{ px: { xs: 2, md: 4 }, py: 0.5, position: "relative", zIndex: 1 }}>
 				<Box
 					component={Link}
 					href="/"
@@ -138,12 +160,12 @@ const Header: React.FC = () => {
 							"backgroundColor": "#2E7D32",
 							"borderRadius": "8px",
 							"px": 3,
-							"py": 1.2,
+							"py": 1.5,
 							"fontSize": "0.95rem",
 							"fontWeight": 500,
 							"position": "relative",
 							"overflow": "hidden",
-							"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+							"transition": "all 0.3s ease",
 							"margin": "0 2px",
 							"&::before": {
 								content: '""',
@@ -153,12 +175,12 @@ const Header: React.FC = () => {
 								width: "100%",
 								height: "100%",
 								backgroundColor: "#1B5E20",
-								transition: "left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+								transition: "left 0.3s ease",
 								zIndex: -1,
 							},
 							"&:hover": {
 								transform: "translateY(-2px)",
-								boxShadow: "0 6px 16px rgba(46, 125, 50, 0.35)",
+								boxShadow: "0 6px 16px rgba(46, 125, 50, 0.3)",
 							},
 							"&:hover::before": {
 								left: 0,

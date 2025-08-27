@@ -1,4 +1,5 @@
 import { Container, Typography, Box, Card, CardContent } from "@mui/material";
+import Image from "next/image";
 import {
 	generatePageMetadata,
 	generateOrganizationSchema,
@@ -72,26 +73,129 @@ export default function AboutPage() {
 	return (
 		<>
 			<SEOScript schemas={schemas} />
-			<Container maxWidth="lg">
-				{/* Header Section */}
+
+			{/* Enhanced Hero Image Section with 3D Effects */}
+			<Box
+				sx={{
+					"position": "relative",
+					"height": "450px",
+					"width": "100%",
+					"overflow": "hidden",
+					"display": "flex",
+					"alignItems": "center",
+					"justifyContent": "center",
+					"perspective": "1000px",
+					"&::before": {
+						content: '""',
+						position: "absolute",
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						background:
+							"linear-gradient(135deg, rgba(46, 125, 50, 0.25) 0%, rgba(27, 94, 32, 0.35) 100%)",
+						zIndex: 2,
+					},
+					"&::after": {
+						content: '""',
+						position: "absolute",
+						bottom: 0,
+						left: 0,
+						right: 0,
+						height: "60%",
+						background:
+							"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
+						zIndex: 2,
+					},
+					"&:hover": {
+						"& .hero-image": {
+							transform: "scale(1.05) rotateY(2deg)",
+						},
+						"& .hero-content": {
+							transform: "translateY(-10px) perspective(800px) rotateX(5deg)",
+						},
+					},
+				}}>
 				<Box
+					className="hero-image"
 					sx={{
-						py: { xs: 8, md: 12 },
+						position: "absolute",
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+					}}>
+					<Image
+						src="/images/it_consultants_discussion.png"
+						alt="About Florian Technologies Team"
+						fill
+						style={{
+							objectFit: "cover",
+							objectPosition: "center",
+						}}
+						priority
+					/>
+				</Box>
+				<Box
+					className="hero-content"
+					sx={{
+						position: "relative",
+						zIndex: 3,
 						textAlign: "center",
+						color: "white",
+						px: { xs: 2, md: 4 },
+						transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					}}>
 					<Typography
 						variant="h1"
 						component="h1"
 						sx={{
-							fontSize: { xs: "2.5rem", md: "3rem" },
+							fontSize: { xs: "2.8rem", md: "4rem" },
 							fontWeight: 700,
-							color: "#2C3E50",
 							mb: 3,
+							textShadow: "0 4px 30px rgba(0, 0, 0, 0.7)",
+							fontFamily: "Poppins, sans-serif",
+							background: "linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%)",
+							backgroundClip: "text",
+							WebkitBackgroundClip: "text",
+							color: "transparent",
+							filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))",
 						}}>
 						About Florian Technologies
 					</Typography>
 					<Typography
 						variant="h2"
+						component="p"
+						sx={{
+							fontSize: { xs: "1.3rem", md: "1.7rem" },
+							fontWeight: 400,
+							opacity: 0.95,
+							maxWidth: "700px",
+							mx: "auto",
+							lineHeight: 1.6,
+							textShadow: "0 2px 15px rgba(0, 0, 0, 0.5)",
+							background: "linear-gradient(135deg, #ffffff 0%, #fafafa 100%)",
+							backgroundClip: "text",
+							WebkitBackgroundClip: "text",
+							color: "transparent",
+							filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))",
+						}}>
+						Leading innovation in healthcare technology and IT solutions since
+						2019
+					</Typography>
+				</Box>
+			</Box>
+
+			<Container maxWidth="lg">
+				{/* Introduction Section */}
+				<Box
+					sx={{
+						py: { xs: 6, md: 8 },
+						textAlign: "center",
+					}}>
+					<Typography
+						variant="h3"
 						component="p"
 						sx={{
 							fontSize: { xs: "1.1rem", md: "1.3rem" },

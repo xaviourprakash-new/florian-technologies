@@ -13,7 +13,7 @@ import {
 	generateWebsiteSchema,
 } from "../lib/seo";
 import SEOScript from "../components/SEOScript";
-import AnimatedTitle from "../components/AnimatedTitle";
+import ImageCarousel from "../components/ImageCarousel";
 
 export const metadata = generatePageMetadata("home");
 
@@ -24,14 +24,17 @@ export default function HomePage() {
 		<>
 			<SEOScript schemas={schemas} />
 			<Container maxWidth="lg">
-				{/* Hero Section */}
+				{/* Hero Carousel Section */}
+				<Box sx={{ py: { xs: 4, md: 6 } }}>
+					<ImageCarousel />
+				</Box>
+
+				{/* Subtitle Section */}
 				<Box
 					sx={{
-						py: { xs: 8, md: 12 },
+						py: { xs: 6, md: 8 },
 						textAlign: "center",
-						position: "relative",
 					}}>
-					<AnimatedTitle />
 					<Typography
 						variant="h2"
 						component="p"
@@ -43,7 +46,7 @@ export default function HomePage() {
 							"mx": "auto",
 							"lineHeight": 1.6,
 							"opacity": 0,
-							"animation": "fadeInUp 1s ease-out 1.5s forwards",
+							"animation": "fadeInUp 1s ease-out 0.5s forwards",
 							"@keyframes fadeInUp": {
 								from: {
 									opacity: 0,

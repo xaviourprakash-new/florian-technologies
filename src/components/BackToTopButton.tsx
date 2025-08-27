@@ -20,23 +20,34 @@ const BackToTopButton: React.FC = () => {
 					"position": "fixed",
 					"bottom": { xs: 220, md: 250 }, // Positioned well above footer
 					"right": { xs: 16, md: 32 },
-					"backgroundColor": "#FFFFFF", // White background as requested
-					"color": "#2E7D32", // Green arrow to match website theme
+					"background": "linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)",
+					"color": "#FFFFFF",
 					"zIndex": 1000,
-					"boxShadow": "0 4px 20px rgba(46, 125, 50, 0.3)",
-					"border": "2px solid #2E7D32", // Green border to match theme
+					"boxShadow": "0 8px 32px rgba(46, 125, 50, 0.3)",
+					"border": "none",
+					"backdropFilter": "blur(10px)",
 					"&:hover": {
-						backgroundColor: "#F8F9FA", // Very light background on hover
-						color: "#1B5E20", // Darker green on hover
-						transform: "scale(1.1)",
-						boxShadow: "0 6px 25px rgba(46, 125, 50, 0.4)",
-						borderColor: "#1B5E20",
+						background: "linear-gradient(135deg, #1B5E20 0%, #0D4E12 100%)",
+						transform: "scale(1.15) translateY(-2px)",
+						boxShadow: "0 12px 40px rgba(46, 125, 50, 0.5)",
 					},
-					"transition": "all 0.3s ease",
+					"&:active": {
+						transform: "scale(1.05)",
+					},
+					"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+					"animation": "float 4s ease-in-out infinite",
+					"@keyframes float": {
+						"0%, 100%": {
+							transform: "translateY(0px)",
+						},
+						"50%": {
+							transform: "translateY(-4px)",
+						},
+					},
 				}}
 				size="medium"
 				aria-label="scroll back to top">
-				<KeyboardArrowUpIcon />
+				<KeyboardArrowUpIcon sx={{ fontSize: "1.5rem" }} />
 			</Fab>
 		</Zoom>
 	);
