@@ -99,9 +99,9 @@ const Header: React.FC = () => {
 					width: "80%",
 					height: "100%",
 					backgroundImage: "url('/images/leafy_background.png')",
-					backgroundSize: "cover",
+					backgroundSize: "auto 120%",
 					backgroundPosition: "right center",
-					backgroundRepeat: "no-repeat",
+					backgroundRepeat: "repeat-x",
 					maskImage:
 						"linear-gradient(to right, transparent 0%, transparent 5%, rgba(0,0,0,0.005) 10%, rgba(0,0,0,0.01) 15%, rgba(0,0,0,0.015) 20%, rgba(0,0,0,0.02) 25%, rgba(0,0,0,0.03) 35%, rgba(0,0,0,0.04) 45%, rgba(0,0,0,0.06) 55%, rgba(0,0,0,0.08) 65%, rgba(0,0,0,0.12) 75%, rgba(0,0,0,0.18) 85%, rgba(0,0,0,0.25) 95%, rgba(0,0,0,0.3) 100%)",
 					WebkitMaskImage:

@@ -5,7 +5,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
-import Image from "next/image";
 import theme from "@/lib/theme";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -22,28 +21,24 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 				<CssBaseline />
 				<Box
 					sx={{
-						"display": "flex",
-						"flexDirection": "column",
-						"minHeight": "100vh", // Use standard viewport height to avoid hydration issues
-						"@supports (height: 100dvh)": {
-							minHeight: "100dvh", // Progressive enhancement for modern browsers
-						},
-						"position": "relative",
-						"width": "100%",
-						"overflowX": "hidden",
+						display: "flex",
+						flexDirection: "column",
+						minHeight: "100vh",
+						position: "relative",
+						width: "100%",
+						overflowX: "hidden",
 					}}>
-					{/* Background Image */}
-					<Image
-						src="/images/body-background.jpg"
-						alt="Background"
-						fill
-						style={{
-							objectFit: "cover",
-							objectPosition: "center top",
+					{/* Background Color */}
+					<Box
+						sx={{
+							position: "absolute",
+							top: 0,
+							left: 0,
+							right: 0,
+							bottom: 0,
+							backgroundColor: "#4fd54fff",
 							zIndex: -2,
 						}}
-						quality={75}
-						priority={false}
 					/>
 					{/* Overlay */}
 					<Box
@@ -64,11 +59,6 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 							flexGrow: 1,
 							position: "relative",
 							zIndex: 1,
-							pb: { xs: 0, md: 0 }, // Remove extra padding that might affect footer
-							minHeight: {
-								xs: "calc(100vh - 300px)",
-								md: "calc(100vh - 200px)",
-							}, // Better minimum height calculation
 						}}>
 						{children}
 					</Box>
