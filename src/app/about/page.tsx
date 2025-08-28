@@ -78,13 +78,15 @@ export default function AboutPage() {
 			<Box
 				sx={{
 					"position": "relative",
-					"height": "450px",
+					"height": { xs: "400px", md: "500px", lg: "600px" },
 					"width": "100%",
 					"overflow": "hidden",
 					"display": "flex",
 					"alignItems": "center",
 					"justifyContent": "center",
 					"perspective": "1000px",
+					"px": { xs: 2, md: 4, lg: 6 },
+					"py": { xs: 3, md: 4, lg: 5 },
 					"&::before": {
 						content: '""',
 						position: "absolute",
@@ -92,8 +94,6 @@ export default function AboutPage() {
 						left: 0,
 						right: 0,
 						bottom: 0,
-						background:
-							"linear-gradient(135deg, rgba(46, 125, 50, 0.15) 0%, rgba(27, 94, 32, 0.20) 100%)",
 						zIndex: 2,
 					},
 					"&::after": {
@@ -103,13 +103,13 @@ export default function AboutPage() {
 						left: 0,
 						right: 0,
 						height: "60%",
-						background:
-							"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%)",
 						zIndex: 2,
 					},
 					"&:hover": {
 						"& .hero-image": {
-							transform: "scale(1.05) rotateY(2deg)",
+							transform: "scale(1.02) rotateY(1deg)",
+							boxShadow:
+								"0 16px 48px rgba(46, 125, 50, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08)",
 						},
 						"& .hero-content": {
 							transform: "translateY(-10px) perspective(800px) rotateX(5deg)",
@@ -120,11 +120,17 @@ export default function AboutPage() {
 					className="hero-image"
 					sx={{
 						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+						top: { xs: "15px", md: "20px", lg: "25px" },
+						left: { xs: "15px", md: "20px", lg: "25px" },
+						right: { xs: "15px", md: "20px", lg: "25px" },
+						bottom: { xs: "15px", md: "20px", lg: "25px" },
+						borderRadius: { xs: "16px", md: "20px", lg: "24px" },
+						overflow: "hidden",
+						boxShadow:
+							"0 8px 32px rgba(46, 125, 50, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+						border: "1px solid rgba(255, 255, 255, 0.2)",
+						backdropFilter: "blur(10px)",
+						transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					}}>
 					<Image
 						src="/images/it_consultants_discussion.png"

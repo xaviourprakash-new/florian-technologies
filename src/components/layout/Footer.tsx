@@ -3,8 +3,11 @@
 import React from "react";
 import { Box, Container, Typography, Link as MuiLink } from "@mui/material";
 import Link from "next/link";
+import { useIsClient } from "@/hooks";
 
 const Footer: React.FC = () => {
+	const isClient = useIsClient();
+	const currentYear = isClient ? new Date().getFullYear() : 2025;
 	return (
 		<Box
 			component="footer"
@@ -171,8 +174,7 @@ const Footer: React.FC = () => {
 							fontSize: { xs: "0.9rem", md: "0.875rem" },
 							lineHeight: 1.6,
 						}}>
-						© {new Date().getFullYear()} Florian Technologies. All rights
-						reserved.
+						© {currentYear} Florian Technologies. All rights reserved.
 						<br />
 						<Typography
 							component="span"

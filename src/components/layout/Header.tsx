@@ -18,9 +18,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Header: React.FC = () => {
 	const [mobileOpen, setMobileOpen] = useState(false);
+	const pathname = usePathname();
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
@@ -35,59 +37,66 @@ const Header: React.FC = () => {
 		{ text: "Contact", href: "/contact" },
 	];
 
-	const menuButtonStyles = {
-		"color": "#2C3E50",
-		"fontSize": "0.95rem",
-		"fontWeight": 500,
-		"px": 3,
-		"py": 1.5,
-		"borderRadius": "10px",
-		"position": "relative",
-		"overflow": "hidden",
-		"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-		"margin": "0 4px",
-		"backgroundColor": "transparent",
-		"border": "1px solid transparent",
-		"&::before": {
-			content: '""',
-			position: "absolute",
-			bottom: 0,
-			left: "-100%",
-			width: "100%",
-			height: "2px",
-			background: "linear-gradient(90deg, #2E7D32, #4CAF50)",
-			transition: "left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-			borderRadius: "1px 1px 0 0",
-		},
-		"&::after": {
-			content: '""',
-			position: "absolute",
-			top: 0,
-			left: 0,
-			right: 0,
-			bottom: 0,
-			background:
-				"linear-gradient(135deg, rgba(46, 125, 50, 0.03) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(46, 125, 50, 0.05) 100%)",
-			opacity: 0,
-			transition: "opacity 0.4s ease",
-			zIndex: -1,
-			borderRadius: "10px",
-		},
-		"&:hover": {
-			color: "#1B5E20",
-			transform: "translateY(-2px)",
-			backgroundColor: "transparent",
-			borderColor: "rgba(46, 125, 50, 0.1)",
-			boxShadow:
-				"0 4px 12px rgba(46, 125, 50, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
-		},
-		"&:hover::before": {
-			left: 0,
-		},
-		"&:hover::after": {
-			opacity: 1,
-		},
+	const getMenuButtonStyles = (href: string) => {
+		const isActive =
+			href === "/" ? pathname === "/" : pathname.startsWith(href);
+		return {
+			"color": isActive ? "#1B5E20" : "#2C3E50",
+			"fontSize": "0.95rem",
+			"fontWeight": isActive ? 600 : 500,
+			"px": 3,
+			"py": 1.5,
+			"borderRadius": "10px",
+			"position": "relative",
+			"overflow": "hidden",
+			"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+			"margin": "0 4px",
+			"backgroundColor": isActive ? "rgba(46, 125, 50, 0.08)" : "transparent",
+			"border": isActive
+				? "1px solid rgba(46, 125, 50, 0.2)"
+				: "1px solid transparent",
+			"&::before": {
+				content: '""',
+				position: "absolute",
+				bottom: 0,
+				left: isActive ? 0 : "-100%",
+				width: "100%",
+				height: "2px",
+				background: "linear-gradient(90deg, #2E7D32, #4CAF50)",
+				transition: "left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+				borderRadius: "1px 1px 0 0",
+			},
+			"&::after": {
+				content: '""',
+				position: "absolute",
+				top: 0,
+				left: 0,
+				right: 0,
+				bottom: 0,
+				background:
+					"linear-gradient(135deg, rgba(46, 125, 50, 0.03) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(46, 125, 50, 0.05) 100%)",
+				opacity: isActive ? 1 : 0,
+				transition: "opacity 0.4s ease",
+				zIndex: -1,
+				borderRadius: "10px",
+			},
+			"&:hover": {
+				color: "#1B5E20",
+				transform: "translateY(-2px)",
+				backgroundColor: "transparent",
+				borderColor: "rgba(46, 125, 50, 0.1)",
+				boxShadow:
+					"0 4px 12px rgba(46, 125, 50, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+			},
+			"&:hover::before": {
+				left: 0,
+			},
+			"&:hover::after": {
+				opacity: 1,
+			},
+		};
 	};
+
 	return (
 		<AppBar
 			position="static"
@@ -115,6 +124,7 @@ const Header: React.FC = () => {
 					opacity: 1,
 					pointerEvents: "none",
 					zIndex: 0,
+					display: { xs: "none", md: "block" },
 				},
 			}}>
 			<Toolbar
@@ -135,6 +145,7 @@ const Header: React.FC = () => {
 						width={300}
 						height={120}
 						priority
+						className="header-logo"
 						style={{
 							borderRadius: "8px",
 							objectFit: "contain",
@@ -150,7 +161,7 @@ const Header: React.FC = () => {
 							key={item.text}
 							component={Link}
 							href={item.href}
-							sx={menuButtonStyles}>
+							sx={getMenuButtonStyles(item.href)}>
 							{item.text}
 						</Button>
 					))}
@@ -228,6 +239,7 @@ const Header: React.FC = () => {
 						"display": { xs: "flex", md: "none" },
 						"color": "#2E7D32",
 						"p": 1.5,
+						"mr": 2,
 						"borderRadius": "12px",
 						"background":
 							"linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(255, 255, 255, 0.8) 100%)",
@@ -312,81 +324,93 @@ const Header: React.FC = () => {
 				{/* Navigation Menu */}
 				<Box sx={{ flex: 1, py: 2 }}>
 					<List sx={{ pt: 0 }}>
-						{menuItems.map((item) => (
-							<ListItem key={item.text} disablePadding>
-								<ListItemButton
-									component={Link}
-									href={item.href}
-									onClick={handleDrawerToggle}
-									sx={{
-										"py": 2.5,
-										"px": 3,
-										"mx": 2,
-										"mb": 1,
-										"borderRadius": "12px",
-										"transition":
-											"all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-										"position": "relative",
-										"overflow": "hidden",
-										"&::before": {
-											content: '""',
-											position: "absolute",
-											top: 0,
-											left: "-100%",
-											width: "100%",
-											height: "100%",
-											background:
-												"linear-gradient(135deg, #E8F5E8 0%, rgba(46, 125, 50, 0.1) 100%)",
-											transition:
-												"left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-											zIndex: -1,
-										},
-										"&:hover": {
-											"backgroundColor": "transparent",
-											"transform": "translateX(8px)",
-											"boxShadow": "0 4px 20px rgba(46, 125, 50, 0.15)",
-											"& .MuiListItemText-primary": {
-												color: "#2E7D32",
-												fontWeight: 600,
+						{menuItems.map((item) => {
+							const isActive =
+								item.href === "/"
+									? pathname === "/"
+									: pathname.startsWith(item.href);
+							return (
+								<ListItem key={item.text} disablePadding>
+									<ListItemButton
+										component={Link}
+										href={item.href}
+										onClick={handleDrawerToggle}
+										sx={{
+											"py": 2.5,
+											"px": 3,
+											"mx": 2,
+											"mb": 1,
+											"borderRadius": "12px",
+											"transition":
+												"all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+											"position": "relative",
+											"overflow": "hidden",
+											"backgroundColor": isActive
+												? "rgba(46, 125, 50, 0.1)"
+												: "transparent",
+											"borderLeft": isActive
+												? "3px solid #2E7D32"
+												: "3px solid transparent",
+											"&::before": {
+												content: '""',
+												position: "absolute",
+												top: 0,
+												left: isActive ? 0 : "-100%",
+												width: "100%",
+												height: "100%",
+												background:
+													"linear-gradient(135deg, #E8F5E8 0%, rgba(46, 125, 50, 0.1) 100%)",
+												transition:
+													"left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+												zIndex: -1,
 											},
-										},
-										"&:hover::before": {
-											left: 0,
-										},
-										"&:active": {
-											transform: "translateX(4px) scale(0.98)",
-										},
-									}}>
-									<ListItemText
-										primary={item.text}
-										slotProps={{
-											primary: {
-												sx: {
-													fontSize: "1.1rem",
-													fontWeight: 500,
-													color: "#2C3E50",
-													fontFamily: "Poppins, sans-serif",
+											"&:hover": {
+												"backgroundColor": "transparent",
+												"transform": "translateX(8px)",
+												"boxShadow": "0 4px 20px rgba(46, 125, 50, 0.15)",
+												"& .MuiListItemText-primary": {
+													color: "#2E7D32",
+													fontWeight: 600,
 												},
 											},
-										}}
-									/>
-									<Box
-										sx={{
-											"width": 6,
-											"height": 6,
-											"borderRadius": "50%",
-											"backgroundColor": "#2E7D32",
-											"opacity": 0,
-											"transition": "opacity 0.3s ease",
-											"ml": 1,
-											".MuiListItemButton-root:hover &": {
-												opacity: 1,
+											"&:hover::before": {
+												left: 0,
 											},
-										}}
-									/>
-								</ListItemButton>
-							</ListItem>
-						))}
+											"&:active": {
+												transform: "translateX(4px) scale(0.98)",
+											},
+										}}>
+										<ListItemText
+											primary={item.text}
+											slotProps={{
+												primary: {
+													sx: {
+														fontSize: "1.1rem",
+														fontWeight: isActive ? 600 : 500,
+														color: isActive ? "#2E7D32" : "#2C3E50",
+														fontFamily: "Poppins, sans-serif",
+													},
+												},
+											}}
+										/>
+										<Box
+											sx={{
+												"width": 6,
+												"height": 6,
+												"borderRadius": "50%",
+												"backgroundColor": "#2E7D32",
+												"opacity": isActive ? 1 : 0,
+												"transition": "opacity 0.3s ease",
+												"ml": 1,
+												".MuiListItemButton-root:hover &": {
+													opacity: 1,
+												},
+											}}
+										/>
+									</ListItemButton>
+								</ListItem>
+							);
+						})}
 					</List>
 				</Box>
 
