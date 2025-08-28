@@ -87,11 +87,45 @@ export default function HomePage() {
 							component={Link}
 							href="/products"
 							sx={{
-								"backgroundColor": "#2E7D32",
+								"background":
+									"linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)",
 								"px": 4,
 								"py": 1.5,
 								"fontSize": "1.1rem",
-								"&:hover": { backgroundColor: "#1B5E20" },
+								"borderRadius": "16px",
+								"fontWeight": 600,
+								"border": "1px solid rgba(255, 255, 255, 0.2)",
+								"boxShadow":
+									"0 6px 20px rgba(46, 125, 50, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+								"backdropFilter": "blur(10px)",
+								"color": "#ffffff",
+								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+								"position": "relative",
+								"overflow": "hidden",
+								"&::after": {
+									content: '""',
+									position: "absolute",
+									top: 0,
+									left: 0,
+									right: 0,
+									bottom: 0,
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.1) 100%)",
+									opacity: 0,
+									transition: "opacity 0.4s ease",
+									borderRadius: "16px",
+									pointerEvents: "none",
+								},
+								"&:hover": {
+									background:
+										"linear-gradient(135deg, #1B5E20 0%, #0D4E12 100%)",
+									transform: "translateY(-2px) scale(1.02)",
+									boxShadow:
+										"0 8px 28px rgba(46, 125, 50, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+								},
+								"&:hover::after": {
+									opacity: 1,
+								},
 							}}>
 							Explore Products
 						</Button>
@@ -101,14 +135,46 @@ export default function HomePage() {
 							component={Link}
 							href="/services"
 							sx={{
-								"borderColor": "#2E7D32",
+								"borderColor": "rgba(46, 125, 50, 0.5)",
 								"color": "#2E7D32",
 								"px": 4,
 								"py": 1.5,
 								"fontSize": "1.1rem",
+								"borderRadius": "16px",
+								"fontWeight": 600,
+								"background":
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 252, 248, 0.8) 100%)",
+								"backdropFilter": "blur(10px)",
+								"boxShadow":
+									"0 4px 12px rgba(46, 125, 50, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7)",
+								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+								"position": "relative",
+								"overflow": "hidden",
+								"&::after": {
+									content: '""',
+									position: "absolute",
+									top: 0,
+									left: 0,
+									right: 0,
+									bottom: 0,
+									background:
+										"linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, transparent 50%, rgba(46, 125, 50, 0.1) 100%)",
+									opacity: 0,
+									transition: "opacity 0.4s ease",
+									borderRadius: "16px",
+									pointerEvents: "none",
+								},
 								"&:hover": {
-									borderColor: "#1B5E20",
-									backgroundColor: "#E8F5E8",
+									borderColor: "#2E7D32",
+									background:
+										"linear-gradient(135deg, rgba(232, 245, 232, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%)",
+									transform: "translateY(-2px) scale(1.02)",
+									boxShadow:
+										"0 6px 20px rgba(46, 125, 50, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+									color: "#1B5E20",
+								},
+								"&:hover::after": {
+									opacity: 1,
 								},
 							}}>
 							View Services
@@ -359,12 +425,14 @@ export default function HomePage() {
 								"textDecoration": "none",
 								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"background":
-									"linear-gradient(135deg, #ffffff 0%, #f8fffe 100%)",
-								"border": "1px solid #E8F5E8",
-								"borderRadius": "16px",
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 255, 254, 0.9) 100%)",
+								"backdropFilter": "blur(20px)",
+								"border": "1px solid rgba(232, 245, 232, 0.3)",
+								"borderRadius": "20px",
 								"position": "relative",
 								"overflow": "hidden",
-								"boxShadow": "0 4px 20px rgba(46, 125, 50, 0.08)",
+								"boxShadow":
+									"0 8px 32px rgba(46, 125, 50, 0.12), 0 4px 16px rgba(46, 125, 50, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7)",
 								"&::before": {
 									content: '""',
 									position: "absolute",
@@ -372,27 +440,51 @@ export default function HomePage() {
 									left: 0,
 									right: 0,
 									height: "4px",
-									background: "linear-gradient(90deg, #2E7D32, #66BB6A)",
+									background:
+										"linear-gradient(90deg, #2E7D32, #66BB6A, #81C784)",
 									transform: "scaleX(0)",
 									transformOrigin: "left",
 									transition: "transform 0.4s ease",
+									borderRadius: "20px 20px 0 0",
+								},
+								"&::after": {
+									content: '""',
+									position: "absolute",
+									top: 0,
+									left: 0,
+									right: 0,
+									bottom: 0,
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.05) 100%)",
+									opacity: 0,
+									transition: "opacity 0.4s ease",
+									borderRadius: "20px",
+									pointerEvents: "none",
 								},
 								"&:hover": {
-									transform: "translateY(-12px)",
-									boxShadow: "0 20px 40px rgba(46, 125, 50, 0.2)",
-									borderColor: "#2E7D32",
+									transform: "translateY(-16px) scale(1.02)",
+									boxShadow:
+										"0 25px 50px rgba(46, 125, 50, 0.25), 0 12px 24px rgba(46, 125, 50, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+									borderColor: "rgba(46, 125, 50, 0.5)",
 								},
 								"&:hover::before": {
 									transform: "scaleX(1)",
 								},
+								"&:hover::after": {
+									opacity: 1,
+								},
 								"&:hover .card-icon": {
-									transform: "scale(1.15) rotate(5deg)",
+									transform: "scale(1.2) rotate(8deg)",
 									backgroundColor: "#2E7D32",
 									color: "#ffffff",
+									boxShadow: "0 8px 24px rgba(46, 125, 50, 0.4)",
 								},
 								"&:hover .card-button": {
-									backgroundColor: "#1B5E20",
-									transform: "scale(1.05)",
+									background:
+										"linear-gradient(135deg, #1B5E20 0%, #0D4E12 100%)",
+									transform: "scale(1.08) translateY(-2px)",
+									boxShadow:
+										"0 8px 24px rgba(27, 94, 32, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 								},
 							}}>
 							<CardContent
@@ -409,15 +501,19 @@ export default function HomePage() {
 										width: 80,
 										height: 80,
 										margin: "0 auto 24px",
-										backgroundColor: "#E8F5E8",
+										background:
+											"linear-gradient(135deg, rgba(232, 245, 232, 0.8) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(232, 245, 232, 0.8) 100%)",
 										color: "#2E7D32",
-										borderRadius: "20px",
+										borderRadius: "24px",
 										display: "flex",
 										alignItems: "center",
 										justifyContent: "center",
 										transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 										fontSize: "2.5rem",
-										border: "2px solid #E8F5E8",
+										border: "2px solid rgba(255, 255, 255, 0.5)",
+										boxShadow:
+											"0 8px 24px rgba(46, 125, 50, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+										backdropFilter: "blur(10px)",
 									}}>
 									🔬
 								</Box>
@@ -451,15 +547,21 @@ export default function HomePage() {
 									className="card-button"
 									variant="contained"
 									sx={{
-										backgroundColor: "#2E7D32",
-										borderRadius: "12px",
+										background:
+											"linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #2E7D32 100%)",
+										borderRadius: "16px",
 										px: 3,
 										py: 1.5,
 										fontSize: "0.95rem",
 										fontWeight: 600,
-										transition: "all 0.3s ease",
+										transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 										textTransform: "none",
 										mt: "auto",
+										border: "1px solid rgba(255, 255, 255, 0.2)",
+										boxShadow:
+											"0 4px 16px rgba(46, 125, 50, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+										backdropFilter: "blur(10px)",
+										color: "#ffffff",
 									}}>
 									View Products
 								</Button>
@@ -473,12 +575,14 @@ export default function HomePage() {
 								"textDecoration": "none",
 								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"background":
-									"linear-gradient(135deg, #ffffff 0%, #fffcf8 100%)",
-								"border": "1px solid #FFF3E0",
-								"borderRadius": "16px",
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 252, 248, 0.9) 100%)",
+								"backdropFilter": "blur(20px)",
+								"border": "1px solid rgba(255, 243, 224, 0.3)",
+								"borderRadius": "20px",
 								"position": "relative",
 								"overflow": "hidden",
-								"boxShadow": "0 4px 20px rgba(255, 143, 0, 0.08)",
+								"boxShadow":
+									"0 8px 32px rgba(255, 143, 0, 0.12), 0 4px 16px rgba(255, 143, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7)",
 								"&::before": {
 									content: '""',
 									position: "absolute",
@@ -486,27 +590,51 @@ export default function HomePage() {
 									left: 0,
 									right: 0,
 									height: "4px",
-									background: "linear-gradient(90deg, #FF8F00, #FFB74D)",
+									background:
+										"linear-gradient(90deg, #FF8F00, #FFB74D, #FFCC80)",
 									transform: "scaleX(0)",
 									transformOrigin: "left",
 									transition: "transform 0.4s ease",
+									borderRadius: "20px 20px 0 0",
+								},
+								"&::after": {
+									content: '""',
+									position: "absolute",
+									top: 0,
+									left: 0,
+									right: 0,
+									bottom: 0,
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 143, 0, 0.05) 100%)",
+									opacity: 0,
+									transition: "opacity 0.4s ease",
+									borderRadius: "20px",
+									pointerEvents: "none",
 								},
 								"&:hover": {
-									transform: "translateY(-12px)",
-									boxShadow: "0 20px 40px rgba(255, 143, 0, 0.2)",
-									borderColor: "#FF8F00",
+									transform: "translateY(-16px) scale(1.02)",
+									boxShadow:
+										"0 25px 50px rgba(255, 143, 0, 0.25), 0 12px 24px rgba(255, 143, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+									borderColor: "rgba(255, 143, 0, 0.5)",
 								},
 								"&:hover::before": {
 									transform: "scaleX(1)",
 								},
+								"&:hover::after": {
+									opacity: 1,
+								},
 								"&:hover .card-icon": {
-									transform: "scale(1.15) rotate(-5deg)",
+									transform: "scale(1.2) rotate(-8deg)",
 									backgroundColor: "#FF8F00",
 									color: "#ffffff",
+									boxShadow: "0 8px 24px rgba(255, 143, 0, 0.4)",
 								},
 								"&:hover .card-button": {
-									backgroundColor: "#F57C00",
-									transform: "scale(1.05)",
+									background:
+										"linear-gradient(135deg, #F57C00 0%, #E65100 100%)",
+									transform: "scale(1.08) translateY(-2px)",
+									boxShadow:
+										"0 8px 24px rgba(245, 124, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 								},
 							}}>
 							<CardContent
@@ -523,15 +651,19 @@ export default function HomePage() {
 										width: 80,
 										height: 80,
 										margin: "0 auto 24px",
-										backgroundColor: "#FFF3E0",
+										background:
+											"linear-gradient(135deg, rgba(255, 243, 224, 0.8) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 243, 224, 0.8) 100%)",
 										color: "#FF8F00",
-										borderRadius: "20px",
+										borderRadius: "24px",
 										display: "flex",
 										alignItems: "center",
 										justifyContent: "center",
 										transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 										fontSize: "2.5rem",
-										border: "2px solid #FFF3E0",
+										border: "2px solid rgba(255, 255, 255, 0.5)",
+										boxShadow:
+											"0 8px 24px rgba(255, 143, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+										backdropFilter: "blur(10px)",
 									}}>
 									🚀
 								</Box>
@@ -565,15 +697,21 @@ export default function HomePage() {
 									className="card-button"
 									variant="contained"
 									sx={{
-										backgroundColor: "#FF8F00",
-										borderRadius: "12px",
+										background:
+											"linear-gradient(135deg, #FF8F00 0%, #FFB74D 50%, #FF8F00 100%)",
+										borderRadius: "16px",
 										px: 3,
 										py: 1.5,
 										fontSize: "0.95rem",
 										fontWeight: 600,
-										transition: "all 0.3s ease",
+										transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 										textTransform: "none",
 										mt: "auto",
+										border: "1px solid rgba(255, 255, 255, 0.2)",
+										boxShadow:
+											"0 4px 16px rgba(255, 143, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+										backdropFilter: "blur(10px)",
+										color: "#ffffff",
 									}}>
 									View Services
 								</Button>
@@ -587,12 +725,14 @@ export default function HomePage() {
 								"textDecoration": "none",
 								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"background":
-									"linear-gradient(135deg, #ffffff 0%, #f8f8ff 100%)",
-								"border": "1px solid #F3E5F5",
-								"borderRadius": "16px",
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(252, 248, 255, 0.9) 100%)",
+								"backdropFilter": "blur(20px)",
+								"border": "1px solid rgba(243, 229, 245, 0.3)",
+								"borderRadius": "20px",
 								"position": "relative",
 								"overflow": "hidden",
-								"boxShadow": "0 4px 20px rgba(156, 39, 176, 0.08)",
+								"boxShadow":
+									"0 8px 32px rgba(156, 39, 176, 0.12), 0 4px 16px rgba(156, 39, 176, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7)",
 								"&::before": {
 									content: '""',
 									position: "absolute",
@@ -600,27 +740,51 @@ export default function HomePage() {
 									left: 0,
 									right: 0,
 									height: "4px",
-									background: "linear-gradient(90deg, #9C27B0, #E1BEE7)",
+									background:
+										"linear-gradient(90deg, #9C27B0, #E1BEE7, #CE93D8)",
 									transform: "scaleX(0)",
 									transformOrigin: "left",
 									transition: "transform 0.4s ease",
+									borderRadius: "20px 20px 0 0",
+								},
+								"&::after": {
+									content: '""',
+									position: "absolute",
+									top: 0,
+									left: 0,
+									right: 0,
+									bottom: 0,
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(156, 39, 176, 0.05) 100%)",
+									opacity: 0,
+									transition: "opacity 0.4s ease",
+									borderRadius: "20px",
+									pointerEvents: "none",
 								},
 								"&:hover": {
-									transform: "translateY(-12px)",
-									boxShadow: "0 20px 40px rgba(156, 39, 176, 0.2)",
-									borderColor: "#9C27B0",
+									transform: "translateY(-16px) scale(1.02)",
+									boxShadow:
+										"0 25px 50px rgba(156, 39, 176, 0.25), 0 12px 24px rgba(156, 39, 176, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+									borderColor: "rgba(156, 39, 176, 0.5)",
 								},
 								"&:hover::before": {
 									transform: "scaleX(1)",
 								},
+								"&:hover::after": {
+									opacity: 1,
+								},
 								"&:hover .card-icon": {
-									transform: "scale(1.15) rotate(5deg)",
+									transform: "scale(1.2) rotate(5deg)",
 									backgroundColor: "#9C27B0",
 									color: "#ffffff",
+									boxShadow: "0 8px 24px rgba(156, 39, 176, 0.4)",
 								},
 								"&:hover .card-button": {
-									backgroundColor: "#7B1FA2",
-									transform: "scale(1.05)",
+									background:
+										"linear-gradient(135deg, #7B1FA2 0%, #4A148C 100%)",
+									transform: "scale(1.08) translateY(-2px)",
+									boxShadow:
+										"0 8px 24px rgba(123, 31, 162, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 								},
 							}}>
 							<CardContent
@@ -637,15 +801,19 @@ export default function HomePage() {
 										width: 80,
 										height: 80,
 										margin: "0 auto 24px",
-										backgroundColor: "#F3E5F5",
+										background:
+											"linear-gradient(135deg, rgba(243, 229, 245, 0.8) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(243, 229, 245, 0.8) 100%)",
 										color: "#9C27B0",
-										borderRadius: "20px",
+										borderRadius: "24px",
 										display: "flex",
 										alignItems: "center",
 										justifyContent: "center",
 										transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 										fontSize: "2.5rem",
-										border: "2px solid #F3E5F5",
+										border: "2px solid rgba(255, 255, 255, 0.5)",
+										boxShadow:
+											"0 8px 24px rgba(156, 39, 176, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+										backdropFilter: "blur(10px)",
 									}}>
 									📞
 								</Box>
@@ -679,15 +847,41 @@ export default function HomePage() {
 									className="card-button"
 									variant="contained"
 									sx={{
-										backgroundColor: "#9C27B0",
-										borderRadius: "12px",
-										px: 3,
-										py: 1.5,
-										fontSize: "0.95rem",
-										fontWeight: 600,
-										transition: "all 0.3s ease",
-										textTransform: "none",
-										mt: "auto",
+										"background":
+											"linear-gradient(135deg, #9C27B0 0%, #BA68C8 100%)",
+										"borderRadius": "16px",
+										"px": 3,
+										"py": 1.5,
+										"fontSize": "0.95rem",
+										"fontWeight": 600,
+										"transition":
+											"all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+										"textTransform": "none",
+										"mt": "auto",
+										"border": "1px solid rgba(255, 255, 255, 0.15)",
+										"boxShadow":
+											"0 4px 16px rgba(156, 39, 176, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+										"backdropFilter": "blur(6px)",
+										"color": "#ffffff",
+										"position": "relative",
+										"overflow": "hidden",
+										"&::after": {
+											content: '""',
+											position: "absolute",
+											top: 0,
+											left: 0,
+											right: 0,
+											bottom: 0,
+											background:
+												"linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 50%, rgba(156, 39, 176, 0.06) 100%)",
+											opacity: 0,
+											transition: "opacity 0.4s ease",
+											borderRadius: "16px",
+											pointerEvents: "none",
+										},
+										"&:hover::after": {
+											opacity: 1,
+										},
 									}}>
 									Contact Us
 								</Button>

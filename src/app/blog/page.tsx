@@ -279,12 +279,28 @@ export default function BlogPage() {
 								label={category}
 								clickable
 								sx={{
-									"backgroundColor": index === 0 ? "#2E7D32" : "transparent",
+									"background":
+										index === 0
+											? "linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)"
+											: "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 252, 248, 0.8) 100%)",
 									"color": index === 0 ? "white" : "#2E7D32",
-									"border": "1px solid #2E7D32",
+									"border": "1px solid rgba(46, 125, 50, 0.3)",
+									"borderRadius": "20px",
+									"fontWeight": 600,
+									"backdropFilter": "blur(10px)",
+									"boxShadow":
+										index === 0
+											? "0 4px 12px rgba(46, 125, 50, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)"
+											: "0 2px 8px rgba(46, 125, 50, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5)",
+									"transition": "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 									"&:hover": {
-										backgroundColor: "#2E7D32",
+										background:
+											"linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)",
 										color: "white",
+										transform: "translateY(-2px) scale(1.05)",
+										boxShadow:
+											"0 6px 16px rgba(46, 125, 50, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+										borderColor: "rgba(255, 255, 255, 0.4)",
 									},
 								}}
 							/>
@@ -310,29 +326,31 @@ export default function BlogPage() {
 						sx={{
 							"p": 4,
 							"boxShadow": "0 8px 24px rgba(0,0,0,0.15)",
-							"borderLeft": "6px solid #2E7D32",
 							"transition": "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
 							"position": "relative",
 							"overflow": "hidden",
 							"cursor": "pointer",
 							"background": "linear-gradient(135deg, #ffffff 0%, #f8fffe 100%)",
+							"border": "1px solid rgba(46, 125, 50, 0.1)",
+							"borderRadius": "12px",
 							"&::before": {
 								content: '""',
 								position: "absolute",
 								top: 0,
 								left: 0,
-								width: "6px",
-								height: "100%",
-								background:
-									"linear-gradient(180deg, #2E7D32, #66BB6A, #2E7D32)",
-								transition: "width 0.4s ease",
+								right: 0,
+								height: "3px",
+								background: "linear-gradient(90deg, #2E7D32, #66BB6A, #2E7D32)",
+								transform: "scaleX(0)",
+								transformOrigin: "left",
+								transition: "transform 0.4s ease",
 							},
 							"&:hover": {
 								transform: "translateY(-12px)",
 								boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
 							},
 							"&:hover::before": {
-								width: "12px",
+								transform: "scaleX(1)",
 							},
 						}}>
 						<CardContent sx={{ p: 0 }}>
@@ -398,8 +416,26 @@ export default function BlogPage() {
 									component={Link}
 									href={`/blog/${featuredPost.slug}`}
 									sx={{
-										"backgroundColor": "#2E7D32",
-										"&:hover": { backgroundColor: "#1B5E20" },
+										"background":
+											"linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)",
+										"borderRadius": "12px",
+										"px": 3,
+										"py": 1.5,
+										"fontWeight": 600,
+										"border": "1px solid rgba(255, 255, 255, 0.2)",
+										"boxShadow":
+											"0 4px 16px rgba(46, 125, 50, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+										"backdropFilter": "blur(10px)",
+										"color": "#ffffff",
+										"transition":
+											"all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+										"&:hover": {
+											background:
+												"linear-gradient(135deg, #1B5E20 0%, #0D4E12 100%)",
+											transform: "translateY(-2px) scale(1.02)",
+											boxShadow:
+												"0 6px 20px rgba(46, 125, 50, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+										},
 									}}>
 									Read Full Article
 								</Button>
@@ -619,11 +655,45 @@ export default function BlogPage() {
 								variant="contained"
 								size="large"
 								sx={{
-									"backgroundColor": "#2E7D32",
+									"background":
+										"linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)",
 									"px": 4,
 									"py": 1.5,
 									"fontSize": "1.1rem",
-									"&:hover": { backgroundColor: "#1B5E20" },
+									"borderRadius": "16px",
+									"fontWeight": 600,
+									"border": "1px solid rgba(255, 255, 255, 0.2)",
+									"boxShadow":
+										"0 6px 20px rgba(46, 125, 50, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+									"backdropFilter": "blur(10px)",
+									"color": "#ffffff",
+									"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+									"position": "relative",
+									"overflow": "hidden",
+									"&::after": {
+										content: '""',
+										position: "absolute",
+										top: 0,
+										left: 0,
+										right: 0,
+										bottom: 0,
+										background:
+											"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.1) 100%)",
+										opacity: 0,
+										transition: "opacity 0.4s ease",
+										borderRadius: "16px",
+										pointerEvents: "none",
+									},
+									"&:hover": {
+										background:
+											"linear-gradient(135deg, #1B5E20 0%, #0D4E12 100%)",
+										transform: "translateY(-2px) scale(1.02)",
+										boxShadow:
+											"0 8px 28px rgba(46, 125, 50, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+									},
+									"&:hover::after": {
+										opacity: 1,
+									},
 								}}>
 								Subscribe to Newsletter
 							</Button>

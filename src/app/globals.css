@@ -77,7 +77,7 @@ img {
   image-rendering: crisp-edges;
     image-rendering: optimize-contrast;
   }
-  
+
   /* Enhance Next.js Image components */
   img[data-nimg="fill"],
   img[data-nimg="responsive"],

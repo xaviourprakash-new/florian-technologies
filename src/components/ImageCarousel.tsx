@@ -18,30 +18,6 @@ const slideIn3D = keyframes`
   }
 `;
 
-const flip3D = keyframes`
-  0% {
-    transform: perspective(1000px) rotateY(0deg);
-  }
-  50% {
-    transform: perspective(1000px) rotateY(90deg) scale(0.8);
-  }
-  100% {
-    transform: perspective(1000px) rotateY(0deg);
-  }
-`;
-
-const imageZoom = keyframes`
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.05) rotate(0.5deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
-`;
-
 const float = keyframes`
   0%, 100% {
     transform: translateY(0px);
@@ -127,6 +103,7 @@ const ImageCarousel: React.FC = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [isImageHovered, setIsImageHovered] = useState(false);
 	const [transitionDirection, setTransitionDirection] = useState<
 		"next" | "prev"
 	>("next");
@@ -136,14 +113,14 @@ const ImageCarousel: React.FC = () => {
 		setIsTransitioning(true);
 		setTransitionDirection("next");
 
+		// Smoother transition with simpler timing
+		setCurrentIndex((prevIndex) =>
+			prevIndex === carouselItems.length - 1 ? 0 : prevIndex + 1,
+		);
+
 		setTimeout(() => {
-			setCurrentIndex((prevIndex) =>
-				prevIndex === carouselItems.length - 1 ? 0 : prevIndex + 1,
-			);
-			setTimeout(() => {
-				setIsTransitioning(false);
-			}, 300);
-		}, 300);
+			setIsTransitioning(false);
+		}, 600);
 	}, [isTransitioning]);
 
 	const prevSlide = useCallback(() => {
@@ -151,14 +128,14 @@ const ImageCarousel: React.FC = () => {
 		setIsTransitioning(true);
 		setTransitionDirection("prev");
 
+		// Smoother transition with simpler timing
+		setCurrentIndex((prevIndex) =>
+			prevIndex === 0 ? carouselItems.length - 1 : prevIndex - 1,
+		);
+
 		setTimeout(() => {
-			setCurrentIndex((prevIndex) =>
-				prevIndex === 0 ? carouselItems.length - 1 : prevIndex - 1,
-			);
-			setTimeout(() => {
-				setIsTransitioning(false);
-			}, 300);
-		}, 300);
+			setIsTransitioning(false);
+		}, 600);
 	}, [isTransitioning]);
 
 	const goToSlide = (index: number) => {
@@ -166,12 +143,12 @@ const ImageCarousel: React.FC = () => {
 		setIsTransitioning(true);
 		setTransitionDirection(index > currentIndex ? "next" : "prev");
 
+		// Smoother transition with simpler timing
+		setCurrentIndex(index);
+
 		setTimeout(() => {
-			setCurrentIndex(index);
-			setTimeout(() => {
-				setIsTransitioning(false);
-			}, 300);
-		}, 300);
+			setIsTransitioning(false);
+		}, 600);
 	};
 
 	useEffect(() => {
@@ -237,16 +214,22 @@ const ImageCarousel: React.FC = () => {
 						animation: `${shimmer} 3s ease-in-out infinite`,
 						zIndex: 3,
 					},
-				}}>
+				}}
+				onMouseEnter={() => setIsImageHovered(true)}
+				onMouseLeave={() => setIsImageHovered(false)}>
 				<Box
 					sx={{
 						position: "relative",
 						width: "100%",
 						height: "100%",
 						transformStyle: "preserve-3d",
-						animation: isTransitioning
-							? `${flip3D} 0.6s ease-in-out`
-							: `${imageZoom} 20s ease-in-out infinite`,
+						opacity: isTransitioning ? 0.8 : 1,
+						transform: isTransitioning
+							? transitionDirection === "next"
+								? "scale(0.95) rotateY(5deg)"
+								: "scale(0.95) rotateY(-5deg)"
+							: "scale(1) rotateY(0deg)",
+						transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					}}>
 					<Image
 						src={currentItem.image}
@@ -255,15 +238,10 @@ const ImageCarousel: React.FC = () => {
 						style={{
 							objectFit: "cover",
 							objectPosition: "center center",
-							transform: isTransitioning
-								? transitionDirection === "next"
-									? "perspective(1000px) rotateY(15deg) scale(0.9)"
-									: "perspective(1000px) rotateY(-15deg) scale(0.9)"
-								: "perspective(1000px) rotateY(0deg) scale(1)",
-							transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 						}}
 						priority
 						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+						quality={90}
 					/>
 				</Box>
 			</Box>
@@ -372,24 +350,51 @@ const ImageCarousel: React.FC = () => {
 					"left": { xs: 16, md: 24 },
 					"top": "50%",
 					"transform": "translateY(-50%)",
-					"backgroundColor": "rgba(255, 255, 255, 0.9)",
-					"color": "#2E7D32",
-					"backdropFilter": "blur(10px)",
-					"border": "1px solid rgba(46, 125, 50, 0.2)",
-					"boxShadow": "0 4px 20px rgba(0, 0, 0, 0.1)",
+					"background":
+						"linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 252, 248, 0.6) 100%)",
+					"color": "rgba(46, 125, 50, 0.7)",
+					"opacity": isImageHovered ? 0.8 : 0.3,
+					"backdropFilter": "blur(15px)",
+					"border": "1px solid rgba(255, 255, 255, 0.2)",
+					"boxShadow":
+						"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
 					"zIndex": 5,
+					"borderRadius": "16px",
+					"width": "56px",
+					"height": "56px",
+					"&::before": {
+						content: '""',
+						position: "absolute",
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						background:
+							"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.05) 100%)",
+						opacity: 0,
+						transition: "opacity 0.4s ease",
+						borderRadius: "16px",
+						pointerEvents: "none",
+					},
 					"&:hover": {
-						backgroundColor: "rgba(46, 125, 50, 0.9)",
+						background:
+							"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
 						color: "white",
+						opacity: 1,
 						transform:
-							"translateY(-50%) scale(1.1) perspective(500px) rotateY(-15deg)",
-						boxShadow: "0 6px 25px rgba(46, 125, 50, 0.3)",
+							"translateY(-50%) scale(1.15) perspective(500px) rotateY(-10deg)",
+						boxShadow:
+							"0 12px 40px rgba(46, 125, 50, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+						borderColor: "rgba(255, 255, 255, 0.5)",
+					},
+					"&:hover::before": {
+						opacity: 1,
 					},
 					"&:disabled": {
-						opacity: 0.5,
+						opacity: 0.3,
 						transform: "translateY(-50%) scale(0.9)",
 					},
-					"transition": "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+					"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					"animation": `${float} 4s ease-in-out infinite`,
 				}}>
 				<ArrowBackIosNew />
@@ -403,24 +408,51 @@ const ImageCarousel: React.FC = () => {
 					"right": { xs: 16, md: 24 },
 					"top": "50%",
 					"transform": "translateY(-50%)",
-					"backgroundColor": "rgba(255, 255, 255, 0.9)",
-					"color": "#2E7D32",
-					"backdropFilter": "blur(10px)",
-					"border": "1px solid rgba(46, 125, 50, 0.2)",
-					"boxShadow": "0 4px 20px rgba(0, 0, 0, 0.1)",
+					"background":
+						"linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 252, 248, 0.6) 100%)",
+					"color": "rgba(46, 125, 50, 0.7)",
+					"opacity": isImageHovered ? 0.8 : 0.3,
+					"backdropFilter": "blur(15px)",
+					"border": "1px solid rgba(255, 255, 255, 0.2)",
+					"boxShadow":
+						"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
 					"zIndex": 5,
+					"borderRadius": "16px",
+					"width": "56px",
+					"height": "56px",
+					"&::before": {
+						content: '""',
+						position: "absolute",
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						background:
+							"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.05) 100%)",
+						opacity: 0,
+						transition: "opacity 0.4s ease",
+						borderRadius: "16px",
+						pointerEvents: "none",
+					},
 					"&:hover": {
-						backgroundColor: "rgba(46, 125, 50, 0.9)",
+						background:
+							"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
 						color: "white",
+						opacity: 1,
 						transform:
-							"translateY(-50%) scale(1.1) perspective(500px) rotateY(15deg)",
-						boxShadow: "0 6px 25px rgba(46, 125, 50, 0.3)",
+							"translateY(-50%) scale(1.15) perspective(500px) rotateY(10deg)",
+						boxShadow:
+							"0 12px 40px rgba(46, 125, 50, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+						borderColor: "rgba(255, 255, 255, 0.5)",
+					},
+					"&:hover::before": {
+						opacity: 1,
 					},
 					"&:disabled": {
-						opacity: 0.5,
+						opacity: 0.3,
 						transform: "translateY(-50%) scale(0.9)",
 					},
-					"transition": "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+					"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					"animation": `${float} 4s ease-in-out infinite 2s`,
 				}}>
 				<ArrowForwardIos />
@@ -438,10 +470,14 @@ const ImageCarousel: React.FC = () => {
 					display: "flex",
 					gap: 2,
 					zIndex: 5,
-					backgroundColor: "rgba(0, 0, 0, 0.3)",
-					borderRadius: "20px",
+					background:
+						"linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%)",
+					borderRadius: "24px",
 					p: 1.5,
-					backdropFilter: "blur(10px)",
+					backdropFilter: "blur(15px)",
+					border: "1px solid rgba(255, 255, 255, 0.2)",
+					boxShadow:
+						"0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
 					transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 				}}>
 				{carouselItems.map((_, index) => (
@@ -452,24 +488,46 @@ const ImageCarousel: React.FC = () => {
 							"width": index === currentIndex ? 40 : 12,
 							"height": 12,
 							"borderRadius": 6,
-							"backgroundColor":
+							"background":
 								index === currentIndex
-									? "rgba(255, 255, 255, 0.95)"
-									: "rgba(255, 255, 255, 0.5)",
+									? "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 252, 248, 0.9) 100%)"
+									: "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%)",
 							"cursor": "pointer",
 							"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-							"border": "1px solid rgba(255, 255, 255, 0.3)",
+							"border": "1px solid rgba(255, 255, 255, 0.4)",
 							"boxShadow":
 								index === currentIndex
-									? "0 2px 10px rgba(255, 255, 255, 0.3)"
-									: "none",
+									? "0 4px 12px rgba(255, 255, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)"
+									: "0 2px 6px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+							"position": "relative",
+							"overflow": "hidden",
+							"&::before": {
+								content: '""',
+								position: "absolute",
+								top: 0,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								background:
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(46, 125, 50, 0.1) 100%)",
+								opacity: index === currentIndex ? 1 : 0,
+								transition: "opacity 0.4s ease",
+								borderRadius: "6px",
+								pointerEvents: "none",
+							},
 							"&:hover": {
-								backgroundColor: "rgba(255, 255, 255, 0.8)",
-								transform: "scale(1.2) perspective(300px) rotateZ(5deg)",
-								boxShadow: "0 4px 15px rgba(255, 255, 255, 0.4)",
+								background:
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 252, 248, 0.8) 100%)",
+								transform: "scale(1.3) perspective(300px) rotateZ(3deg)",
+								boxShadow:
+									"0 6px 20px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+								borderColor: "rgba(255, 255, 255, 0.6)",
+							},
+							"&:hover::before": {
+								opacity: 1,
 							},
 							"&:active": {
-								transform: "scale(0.9) perspective(300px) rotateZ(-5deg)",
+								transform: "scale(1.1) perspective(300px) rotateZ(-3deg)",
 							},
 							...(index === currentIndex && {
 								animation: `${pulse} 2s ease-in-out infinite`,

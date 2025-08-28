@@ -41,12 +41,13 @@ const Header: React.FC = () => {
 		"fontWeight": 500,
 		"px": 3,
 		"py": 1.5,
-		"borderRadius": "8px",
+		"borderRadius": "10px",
 		"position": "relative",
 		"overflow": "hidden",
-		"transition": "all 0.3s ease",
+		"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 		"margin": "0 4px",
 		"backgroundColor": "transparent",
+		"border": "1px solid transparent",
 		"&::before": {
 			content: '""',
 			position: "absolute",
@@ -54,8 +55,8 @@ const Header: React.FC = () => {
 			left: "-100%",
 			width: "100%",
 			height: "2px",
-			backgroundColor: "#2E7D32",
-			transition: "left 0.3s ease",
+			background: "linear-gradient(90deg, #2E7D32, #4CAF50)",
+			transition: "left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 			borderRadius: "1px 1px 0 0",
 		},
 		"&::after": {
@@ -65,15 +66,20 @@ const Header: React.FC = () => {
 			left: 0,
 			right: 0,
 			bottom: 0,
-			backgroundColor: "rgba(46, 125, 50, 0.08)",
+			background:
+				"linear-gradient(135deg, rgba(46, 125, 50, 0.03) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(46, 125, 50, 0.05) 100%)",
 			opacity: 0,
-			transition: "opacity 0.3s ease",
+			transition: "opacity 0.4s ease",
 			zIndex: -1,
-			borderRadius: "8px",
+			borderRadius: "10px",
 		},
 		"&:hover": {
 			color: "#1B5E20",
-			transform: "translateY(-1px)",
+			transform: "translateY(-2px)",
+			backgroundColor: "transparent",
+			borderColor: "rgba(46, 125, 50, 0.1)",
+			boxShadow:
+				"0 4px 12px rgba(46, 125, 50, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
 		},
 		"&:hover::before": {
 			left: 0,
@@ -157,16 +163,21 @@ const Header: React.FC = () => {
 						component={Link}
 						href="/contact"
 						sx={{
-							"backgroundColor": "#2E7D32",
-							"borderRadius": "8px",
+							"background": "linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)",
+							"borderRadius": "12px",
 							"px": 3,
 							"py": 1.5,
 							"fontSize": "0.95rem",
-							"fontWeight": 500,
+							"fontWeight": 600,
 							"position": "relative",
 							"overflow": "hidden",
-							"transition": "all 0.3s ease",
+							"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 							"margin": "0 2px",
+							"border": "1px solid rgba(255, 255, 255, 0.2)",
+							"boxShadow":
+								"0 4px 16px rgba(46, 125, 50, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+							"backdropFilter": "blur(10px)",
+							"color": "#ffffff",
 							"&::before": {
 								content: '""',
 								position: "absolute",
@@ -174,16 +185,34 @@ const Header: React.FC = () => {
 								left: "-100%",
 								width: "100%",
 								height: "100%",
-								backgroundColor: "#1B5E20",
-								transition: "left 0.3s ease",
+								background: "linear-gradient(135deg, #1B5E20 0%, #0D4E12 100%)",
+								transition: "left 0.4s ease",
 								zIndex: -1,
 							},
+							"&::after": {
+								content: '""',
+								position: "absolute",
+								top: 0,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								background:
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.1) 100%)",
+								opacity: 0,
+								transition: "opacity 0.4s ease",
+								borderRadius: "12px",
+								pointerEvents: "none",
+							},
 							"&:hover": {
-								transform: "translateY(-2px)",
-								boxShadow: "0 6px 16px rgba(46, 125, 50, 0.3)",
+								transform: "translateY(-3px) scale(1.02)",
+								boxShadow:
+									"0 8px 24px rgba(46, 125, 50, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 							},
 							"&:hover::before": {
 								left: 0,
+							},
+							"&:hover::after": {
+								opacity: 1,
 							},
 						}}>
 						Contact
@@ -199,10 +228,21 @@ const Header: React.FC = () => {
 						"display": { xs: "flex", md: "none" },
 						"color": "#2E7D32",
 						"p": 1.5,
-						"transition": "all 0.3s ease",
+						"borderRadius": "12px",
+						"background":
+							"linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(255, 255, 255, 0.8) 100%)",
+						"border": "1px solid rgba(46, 125, 50, 0.1)",
+						"backdropFilter": "blur(10px)",
+						"boxShadow":
+							"0 2px 8px rgba(46, 125, 50, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7)",
+						"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 						"&:hover": {
-							backgroundColor: "#E8F5E8",
-							transform: "scale(1.05)",
+							background:
+								"linear-gradient(135deg, rgba(46, 125, 50, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%)",
+							transform: "scale(1.08) translateY(-1px)",
+							boxShadow:
+								"0 4px 16px rgba(46, 125, 50, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+							borderColor: "rgba(46, 125, 50, 0.2)",
 						},
 					}}>
 					<MenuIcon sx={{ fontSize: "1.5rem" }} />

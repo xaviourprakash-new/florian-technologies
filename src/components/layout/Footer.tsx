@@ -75,14 +75,22 @@ const Footer: React.FC = () => {
 								"textDecoration": "none",
 								"fontSize": { xs: "0.95rem", md: "1rem" },
 								"fontWeight": 400,
-								"padding": { xs: "8px 0", md: "4px 8px" },
-								"borderRadius": "6px",
-								"transition": "all 0.3s ease",
+								"padding": { xs: "10px 12px", md: "8px 16px" },
+								"borderRadius": "10px",
+								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"position": "relative",
+								"border": "1px solid rgba(255, 255, 255, 0.1)",
+								"backdropFilter": "blur(8px)",
+								"background":
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)",
 								"&:hover": {
 									textDecoration: "none",
-									backgroundColor: "rgba(255, 255, 255, 0.1)",
-									transform: "translateY(-1px)",
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%)",
+									transform: "translateY(-2px) scale(1.02)",
+									borderColor: "rgba(255, 255, 255, 0.2)",
+									boxShadow:
+										"0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
 								},
 							}}>
 							Privacy Policy
@@ -95,14 +103,22 @@ const Footer: React.FC = () => {
 								"textDecoration": "none",
 								"fontSize": { xs: "0.95rem", md: "1rem" },
 								"fontWeight": 400,
-								"padding": { xs: "8px 0", md: "4px 8px" },
-								"borderRadius": "6px",
-								"transition": "all 0.3s ease",
+								"padding": { xs: "10px 12px", md: "8px 16px" },
+								"borderRadius": "10px",
+								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"position": "relative",
+								"border": "1px solid rgba(255, 255, 255, 0.1)",
+								"backdropFilter": "blur(8px)",
+								"background":
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)",
 								"&:hover": {
 									textDecoration: "none",
-									backgroundColor: "rgba(255, 255, 255, 0.1)",
-									transform: "translateY(-1px)",
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%)",
+									transform: "translateY(-2px) scale(1.02)",
+									borderColor: "rgba(255, 255, 255, 0.2)",
+									boxShadow:
+										"0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
 								},
 							}}>
 							Terms of Service
@@ -115,14 +131,22 @@ const Footer: React.FC = () => {
 								"textDecoration": "none",
 								"fontSize": { xs: "0.95rem", md: "1rem" },
 								"fontWeight": 400,
-								"padding": { xs: "8px 0", md: "4px 8px" },
-								"borderRadius": "6px",
-								"transition": "all 0.3s ease",
+								"padding": { xs: "10px 12px", md: "8px 16px" },
+								"borderRadius": "10px",
+								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"position": "relative",
+								"border": "1px solid rgba(255, 255, 255, 0.1)",
+								"backdropFilter": "blur(8px)",
+								"background":
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)",
 								"&:hover": {
 									textDecoration: "none",
-									backgroundColor: "rgba(255, 255, 255, 0.1)",
-									transform: "translateY(-1px)",
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%)",
+									transform: "translateY(-2px) scale(1.02)",
+									borderColor: "rgba(255, 255, 255, 0.2)",
+									boxShadow:
+										"0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
 								},
 							}}>
 							Contact Us

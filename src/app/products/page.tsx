@@ -299,27 +299,33 @@ export default function ProductsPage() {
 								sx={{
 									"p": 4,
 									"boxShadow": "0 4px 12px rgba(0,0,0,0.1)",
-									"borderLeft": "4px solid #2E7D32",
 									"transition": "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
 									"position": "relative",
 									"overflow": "hidden",
 									"cursor": "pointer",
+									"border": "1px solid rgba(46, 125, 50, 0.1)",
+									"borderRadius": "12px",
+									"background":
+										"linear-gradient(135deg, #ffffff 0%, #f8fffe 100%)",
 									"&::before": {
 										content: '""',
 										position: "absolute",
 										top: 0,
 										left: 0,
-										width: "4px",
-										height: "100%",
-										background: "linear-gradient(180deg, #2E7D32, #66BB6A)",
-										transition: "width 0.3s ease",
+										right: 0,
+										height: "3px",
+										background:
+											"linear-gradient(90deg, #2E7D32, #66BB6A, #2E7D32)",
+										transform: "scaleX(0)",
+										transformOrigin: "left",
+										transition: "transform 0.3s ease",
 									},
 									"&:hover": {
-										transform: "translateX(8px)",
+										transform: "translateY(-8px)",
 										boxShadow: "0 12px 24px rgba(0,0,0,0.15)",
 									},
 									"&:hover::before": {
-										width: "8px",
+										transform: "scaleX(1)",
 									},
 								}}>
 								<CardContent sx={{ p: 0 }}>
