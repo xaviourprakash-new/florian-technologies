@@ -29,7 +29,7 @@ export const SEO_DATA = {
 	organization: {
 		name: "Florian Technologies",
 		url: "https://www.florian-tech.com",
-		logo: "https://www.florian-tech.com/images/florian-technologies-title.jpg",
+		logo: "https://www.florian-tech.com/images/floriantechnologies-title.jpg",
 		description:
 			"Leading provider of medical products and IT services for healthcare and business sectors.",
 		address: {

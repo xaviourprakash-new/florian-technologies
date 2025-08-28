@@ -261,7 +261,6 @@ const ImageCarousel: React.FC = () => {
 									: "perspective(1000px) rotateY(-15deg) scale(0.9)"
 								: "perspective(1000px) rotateY(0deg) scale(1)",
 							transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-							filter: isTransitioning ? "blur(1px)" : "blur(0px)",
 						}}
 						priority
 						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
@@ -278,7 +277,7 @@ const ImageCarousel: React.FC = () => {
 					right: 0,
 					p: { xs: 4, md: 6 },
 					background:
-						"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.85) 100%)",
+						"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.6) 100%)",
 					zIndex: 4,
 					transform: isTransitioning
 						? transitionDirection === "next"

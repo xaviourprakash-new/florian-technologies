@@ -132,7 +132,7 @@ export default function BlogPage() {
 						right: 0,
 						bottom: 0,
 						background:
-							"linear-gradient(135deg, rgba(21, 101, 192, 0.25) 0%, rgba(25, 118, 210, 0.35) 100%)",
+							"linear-gradient(135deg, rgba(21, 101, 192, 0.15) 0%, rgba(25, 118, 210, 0.20) 100%)",
 						zIndex: 2,
 					},
 					"&::after": {
@@ -143,7 +143,7 @@ export default function BlogPage() {
 						right: 0,
 						height: "60%",
 						background:
-							"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
+							"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%)",
 						zIndex: 2,
 					},
 					"&:hover": {
@@ -184,6 +184,7 @@ export default function BlogPage() {
 						textAlign: "center",
 						color: "white",
 						px: { xs: 2, md: 4 },
+						py: { xs: 3, md: 4 },
 						transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					}}>
 					<Typography
@@ -193,13 +194,10 @@ export default function BlogPage() {
 							fontSize: { xs: "2.8rem", md: "4rem" },
 							fontWeight: 700,
 							mb: 3,
-							textShadow: "0 4px 30px rgba(0, 0, 0, 0.7)",
+							textShadow:
+								"0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6)",
 							fontFamily: "Poppins, sans-serif",
-							background: "linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%)",
-							backgroundClip: "text",
-							WebkitBackgroundClip: "text",
-							color: "transparent",
-							filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))",
+							color: "white",
 						}}>
 						Healthcare Technology Insights
 					</Typography>
@@ -213,12 +211,9 @@ export default function BlogPage() {
 							maxWidth: "700px",
 							mx: "auto",
 							lineHeight: 1.6,
-							textShadow: "0 2px 15px rgba(0, 0, 0, 0.5)",
-							background: "linear-gradient(135deg, #ffffff 0%, #fafafa 100%)",
-							backgroundClip: "text",
-							WebkitBackgroundClip: "text",
-							color: "transparent",
-							filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))",
+							textShadow:
+								"0 1px 3px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6)",
+							color: "white",
 						}}>
 						Expert analysis, industry trends, and innovative solutions for
 						healthcare technology

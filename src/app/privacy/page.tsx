@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 						"provider": {
 							"@type": "Organization",
 							"name": "Florian Technologies",
-							"url": "https://florian-technologies.com",
+							"url": "https://floriantechnologies.com",
 						},
 					},
 				]}
@@ -288,7 +288,7 @@ export default function PrivacyPage() {
 							<Typography variant="body1" sx={{ mb: 2 }}>
 								<strong>Florian Technologies</strong>
 								<br />
-								Email: privacy@florian-technologies.com
+								Email: privacy@floriantechnologies.com
 								<br />
 								Phone: [Contact Number]
 								<br />

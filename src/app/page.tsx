@@ -395,7 +395,14 @@ export default function HomePage() {
 									transform: "scale(1.05)",
 								},
 							}}>
-							<CardContent sx={{ p: 5, textAlign: "center" }}>
+							<CardContent
+								sx={{
+									p: 5,
+									textAlign: "center",
+									display: "flex",
+									flexDirection: "column",
+									height: "100%",
+								}}>
 								<Box
 									className="card-icon"
 									sx={{
@@ -433,6 +440,9 @@ export default function HomePage() {
 										mb: 4,
 										lineHeight: 1.6,
 										fontSize: "1rem",
+										flex: 1,
+										display: "flex",
+										alignItems: "center",
 									}}>
 									Hospital diagnostic devices, pharmacy automation systems and
 									patient management tools.
@@ -449,6 +459,7 @@ export default function HomePage() {
 										fontWeight: 600,
 										transition: "all 0.3s ease",
 										textTransform: "none",
+										mt: "auto",
 									}}>
 									View Products
 								</Button>
@@ -498,7 +509,14 @@ export default function HomePage() {
 									transform: "scale(1.05)",
 								},
 							}}>
-							<CardContent sx={{ p: 5, textAlign: "center" }}>
+							<CardContent
+								sx={{
+									p: 5,
+									textAlign: "center",
+									display: "flex",
+									flexDirection: "column",
+									height: "100%",
+								}}>
 								<Box
 									className="card-icon"
 									sx={{
@@ -536,9 +554,12 @@ export default function HomePage() {
 										mb: 4,
 										lineHeight: 1.6,
 										fontSize: "1rem",
+										flex: 1,
+										display: "flex",
+										alignItems: "center",
 									}}>
 									IT consulting, software development, cloud solutions and data
-									analytics.
+									analytics for business transformation.
 								</Typography>
 								<Button
 									className="card-button"
@@ -552,6 +573,7 @@ export default function HomePage() {
 										fontWeight: 600,
 										transition: "all 0.3s ease",
 										textTransform: "none",
+										mt: "auto",
 									}}>
 									View Services
 								</Button>
@@ -601,7 +623,14 @@ export default function HomePage() {
 									transform: "scale(1.05)",
 								},
 							}}>
-							<CardContent sx={{ p: 5, textAlign: "center" }}>
+							<CardContent
+								sx={{
+									p: 5,
+									textAlign: "center",
+									display: "flex",
+									flexDirection: "column",
+									height: "100%",
+								}}>
 								<Box
 									className="card-icon"
 									sx={{
@@ -639,6 +668,9 @@ export default function HomePage() {
 										mb: 4,
 										lineHeight: 1.6,
 										fontSize: "1rem",
+										flex: 1,
+										display: "flex",
+										alignItems: "center",
 									}}>
 									Ready to partner with us? Contact our team for quotes,
 									consultations, or support.
@@ -655,6 +687,7 @@ export default function HomePage() {
 										fontWeight: 600,
 										transition: "all 0.3s ease",
 										textTransform: "none",
+										mt: "auto",
 									}}>
 									Contact Us
 								</Button>

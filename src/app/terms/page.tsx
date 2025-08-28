@@ -25,7 +25,7 @@ export default function TermsPage() {
 						"provider": {
 							"@type": "Organization",
 							"name": "Florian Technologies",
-							"url": "https://florian-technologies.com",
+							"url": "https://floriantechnologies.com",
 						},
 					},
 				]}
@@ -461,7 +461,7 @@ export default function TermsPage() {
 						<Typography variant="body1" paragraph>
 							<strong>Florian Technologies</strong>
 							<br />
-							Email: legal@florian-technologies.com
+							Email: legal@floriantechnologies.com
 							<br />
 							Phone: [Your Phone Number]
 							<br />

@@ -124,7 +124,7 @@ const Header: React.FC = () => {
 						color: "inherit",
 					}}>
 					<Image
-						src="/images/florian-technologies-title.jpg"
+						src="/images/floriantechnologies-title.jpg"
 						alt="Florian Technologies Logo"
 						width={300}
 						height={120}
@@ -240,7 +240,7 @@ const Header: React.FC = () => {
 					}}>
 					<Box>
 						<Image
-							src="/images/florian-technologies-title.jpg"
+							src="/images/floriantechnologies-title.jpg"
 							alt="Florian Technologies Logo"
 							width={180}
 							height={72}

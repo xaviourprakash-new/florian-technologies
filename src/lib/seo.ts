@@ -95,7 +95,7 @@ export function generateOrganizationSchema() {
 			...SEO_DATA.organization.contactPoint,
 		},
 		"sameAs": [
-			"https://www.linkedin.com/company/florian-technologies",
+			"https://www.linkedin.com/company/floriantechnologies",
 			"https://twitter.com/floriantech",
 		],
 	};

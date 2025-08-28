@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
 			allow: "/",
 			disallow: ["/api/", "/admin/"],
 		},
-		sitemap: "https://florian-technologies.com/sitemap.xml",
+		sitemap: "https://floriantechnologies.com/sitemap.xml",
 	};
 }

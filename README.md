@@ -132,7 +132,7 @@ src/
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd florian-technologies
+cd floriantechnologies
 
 # Install dependencies
 npm install
@@ -270,7 +270,7 @@ Connect your GitHub repository to Netlify for automatic deployments.
 ## 📞 Support
 
 For technical support or questions about the website:
-- **Email**: support@florian-technologies.com
+- **Email**: support@floriantechnologies.com
 - **Development Team**: Available during business hours
 - **Emergency Support**: 24/7 hotline for critical issues
 

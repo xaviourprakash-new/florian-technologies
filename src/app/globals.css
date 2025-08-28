@@ -59,7 +59,7 @@ body {
   line-height: 1.6;
   position: relative;
   }
-  
+
   /* Add subtle animated gradient overlay */
   body::before {
     content: '';
@@ -77,13 +77,13 @@ body {
     z-index: -1;
     animation: subtleShift 10s ease-in-out infinite alternate;
   }
-  
+
   @keyframes subtleShift {
     0% {
       opacity: 0.3;
       transform: translateX(-2px);
     }
-  
+
     100% {
       opacity: 0.7;
       transform: translateX(2px);
@@ -111,6 +111,18 @@ button:focus-visible {
 img {
   max-width: 100%;
   height: auto;
+  image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimize-contrast;
+  }
+  
+  /* Enhance Next.js Image components */
+  img[data-nimg="fill"],
+  img[data-nimg="responsive"],
+  img[data-nimg="intrinsic"] {
+    filter: brightness(1.05) contrast(1.05) saturate(1.1);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: high-quality;
 }
 
 /* Utility classes for responsive design */

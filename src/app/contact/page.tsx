@@ -31,8 +31,8 @@ export default function ContactPage() {
 		{
 			icon: <Email sx={{ fontSize: "2rem", color: "#2E7D32" }} />,
 			title: "Email",
-			primary: "contact@florian-technologies.com",
-			secondary: "support@florian-technologies.com",
+			primary: "contact@floriantechnologies.com",
+			secondary: "support@floriantechnologies.com",
 			description: "Get detailed responses within 24 hours",
 		},
 		{
@@ -54,22 +54,22 @@ export default function ContactPage() {
 	const departments = [
 		{
 			name: "Sales & Business Development",
-			email: "sales@florian-technologies.com",
+			email: "sales@floriantechnologies.com",
 			description: "Product inquiries, quotes and partnership opportunities",
 		},
 		{
 			name: "Technical Support",
-			email: "support@florian-technologies.com",
+			email: "support@floriantechnologies.com",
 			description: "Product support, troubleshooting and technical assistance",
 		},
 		{
 			name: "Consulting Services",
-			email: "consulting@florian-technologies.com",
+			email: "consulting@floriantechnologies.com",
 			description: "IT consulting, custom development and project discussions",
 		},
 		{
 			name: "Regulatory & Compliance",
-			email: "compliance@florian-technologies.com",
+			email: "compliance@floriantechnologies.com",
 			description:
 				"FDA regulations, HIPAA compliance and certification questions",
 		},
@@ -98,7 +98,7 @@ export default function ContactPage() {
 						right: 0,
 						bottom: 0,
 						background:
-							"linear-gradient(135deg, rgba(156, 39, 176, 0.25) 0%, rgba(123, 31, 162, 0.35) 100%)",
+							"linear-gradient(135deg, rgba(156, 39, 176, 0.15) 0%, rgba(123, 31, 162, 0.20) 100%)",
 						zIndex: 2,
 					},
 					"&::after": {
@@ -109,7 +109,7 @@ export default function ContactPage() {
 						right: 0,
 						height: "60%",
 						background:
-							"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
+							"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%)",
 						zIndex: 2,
 					},
 					"&:hover": {
@@ -150,6 +150,7 @@ export default function ContactPage() {
 						textAlign: "center",
 						color: "white",
 						px: { xs: 2, md: 4 },
+						py: { xs: 3, md: 4 },
 						transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					}}>
 					<Typography
@@ -159,13 +160,9 @@ export default function ContactPage() {
 							fontSize: { xs: "2.8rem", md: "4rem" },
 							fontWeight: 700,
 							mb: 3,
-							textShadow: "0 4px 30px rgba(0, 0, 0, 0.7)",
+							color: "white",
+							textShadow: "0 2px 8px rgba(0, 0, 0, 0.7)",
 							fontFamily: "Poppins, sans-serif",
-							background: "linear-gradient(135deg, #ffffff 0%, #f3e5f5 100%)",
-							backgroundClip: "text",
-							WebkitBackgroundClip: "text",
-							color: "transparent",
-							filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))",
 						}}>
 						Contact Florian Technologies
 					</Typography>
@@ -179,12 +176,8 @@ export default function ContactPage() {
 							maxWidth: "700px",
 							mx: "auto",
 							lineHeight: 1.6,
-							textShadow: "0 2px 15px rgba(0, 0, 0, 0.5)",
-							background: "linear-gradient(135deg, #ffffff 0%, #fafafa 100%)",
-							backgroundClip: "text",
-							WebkitBackgroundClip: "text",
-							color: "transparent",
-							filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))",
+							color: "white",
+							textShadow: "0 2px 4px rgba(0, 0, 0, 0.7)",
 						}}>
 						Ready to partner with us? Get in touch for quotes, consultations, or
 						support
