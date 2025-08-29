@@ -19,10 +19,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useIsClient } from "@/hooks/useClient";
 
 const Header: React.FC = () => {
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const pathname = usePathname();
+	const isClient = useIsClient();
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
@@ -38,8 +40,12 @@ const Header: React.FC = () => {
 	];
 
 	const getMenuButtonStyles = (href: string) => {
-		const isActive =
-			href === "/" ? pathname === "/" : pathname.startsWith(href);
+		// Only calculate active state on client to prevent hydration mismatch
+		const isActive = isClient
+			? href === "/"
+				? pathname === "/"
+				: pathname.startsWith(href)
+			: false;
 		return {
 			"color": isActive ? "#1B5E20" : "#2C3E50",
 			"fontSize": "0.95rem",
@@ -325,10 +331,11 @@ const Header: React.FC = () => {
 				<Box sx={{ flex: 1, py: 2 }}>
 					<List sx={{ pt: 0 }}>
 						{menuItems.map((item) => {
-							const isActive =
-								item.href === "/"
+							const isActive = isClient
+								? item.href === "/"
 									? pathname === "/"
-									: pathname.startsWith(item.href);
+									: pathname.startsWith(item.href)
+								: false;
 							return (
 								<ListItem key={item.text} disablePadding>
 									<ListItemButton

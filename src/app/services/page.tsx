@@ -201,95 +201,91 @@ export default function ServicesPage() {
 		<>
 			<SEOScript schemas={serviceSchemas} />
 
-			{/* Enhanced Hero Image Section with 3D Effects */}
+			{/* Enhanced Hero Image Section with Responsive Layout */}
 			<Box
 				sx={{
-					"position": "relative",
-					"height": { xs: "400px", md: "500px", lg: "600px" },
-					"width": "100%",
-					"overflow": "hidden",
-					"display": "flex",
-					"alignItems": "center",
-					"justifyContent": "center",
-					"perspective": "1000px",
-					"px": { xs: 2, md: 4, lg: 6 },
-					"py": { xs: 3, md: 4, lg: 5 },
-					"&::before": {
-						content: '""',
-						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						zIndex: 2,
-					},
-					"&::after": {
-						content: '""',
-						position: "absolute",
-						bottom: 0,
-						left: 0,
-						right: 0,
-						height: "60%",
-						zIndex: 2,
-					},
-					"&:hover": {
-						"& .hero-image": {
-							transform: "scale(1.02) rotateY(1deg)",
-							boxShadow:
-								"0 16px 48px rgba(46, 125, 50, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08)",
-						},
-						"& .hero-content": {
-							transform: "translateY(-10px) perspective(800px) rotateX(5deg)",
-						},
-					},
+					position: "relative",
+					width: "100%",
+					maxWidth: { xs: "100%", md: "90%", lg: "85%", xl: "80%" },
+					mx: "auto",
+					overflow: "hidden",
+					px: { xs: 2, md: 4, lg: 6, xl: 8 },
+					py: { xs: 3, md: 4, lg: 5, xl: 6 },
 				}}>
+				{/* Image Container - Responsive Height */}
 				<Box
-					className="hero-image"
+					sx={{
+						"position": "relative",
+						"height": { xs: "400px", md: "700px", lg: "800px", xl: "900px" },
+						"display": "flex",
+						"alignItems": "center",
+						"justifyContent": "center",
+						"perspective": "1000px",
+						"&:hover": {
+							"& .hero-image": {
+								transform: "scale(1.02) rotateY(1deg)",
+							},
+							"& .hero-content-overlay": {
+								transform:
+									"translate(-50%, -50%) translateY(-10px) perspective(800px) rotateX(5deg)",
+							},
+						},
+					}}>
+					<Box
+						className="hero-image"
+						sx={{
+							position: "absolute",
+							top: { xs: "15px", md: "20px", lg: "25px", xl: "30px" },
+							left: { xs: "15px", md: "10%", lg: "10%", xl: "10%" },
+							right: { xs: "15px", md: "10%", lg: "10%", xl: "10%" },
+							bottom: { xs: "15px", md: "20px", lg: "25px", xl: "30px" },
+							borderRadius: { xs: "16px", md: "20px", lg: "24px", xl: "28px" },
+							overflow: "hidden",
+							border: "1px solid rgba(255, 255, 255, 0.2)",
+							backdropFilter: "blur(10px)",
+							transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+						}}>
+						<Image
+							src="/images/it_services.png"
+							alt="IT Services and Consulting"
+							fill
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+							style={{
+								objectFit: "cover",
+								objectPosition: "center",
+							}}
+							priority
+						/>
+					</Box>
+				</Box>
+
+				{/* Desktop Overlay Content - Only on Desktop */}
+				<Box
+					className="hero-content-overlay"
 					sx={{
 						position: "absolute",
-						top: { xs: "15px", md: "20px", lg: "25px" },
-						left: { xs: "15px", md: "20px", lg: "25px" },
-						right: { xs: "15px", md: "20px", lg: "25px" },
-						bottom: { xs: "15px", md: "20px", lg: "25px" },
-						borderRadius: { xs: "16px", md: "20px", lg: "24px" },
-						overflow: "hidden",
-						boxShadow:
-							"0 8px 32px rgba(46, 125, 50, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
-						border: "1px solid rgba(255, 255, 255, 0.2)",
-						backdropFilter: "blur(10px)",
-						transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-					}}>
-					<Image
-						src="/images/it_services.png"
-						alt="IT Services and Consulting"
-						fill
-						style={{
-							objectFit: "cover",
-							objectPosition: "center",
-						}}
-						priority
-					/>
-				</Box>
-				<Box
-					className="hero-content"
-					sx={{
-						position: "relative",
-						zIndex: 3,
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						zIndex: 10,
 						textAlign: "center",
 						color: "white",
-						px: { xs: 2, md: 4 },
-						py: { xs: 3, md: 4 },
+						px: { md: 4, lg: 6, xl: 8 },
+						py: { md: 4, lg: 5, xl: 6 },
 						transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+						display: { xs: "none", md: "block" },
+						width: "90%",
+						maxWidth: "800px",
 					}}>
 					<Typography
 						variant="h1"
 						component="h1"
 						sx={{
-							fontSize: { xs: "2.8rem", md: "4rem" },
+							fontSize: { md: "4rem", lg: "4.5rem", xl: "5rem" },
 							fontWeight: 700,
-							mb: 3,
+							mb: { lg: 4, xl: 5 },
 							textShadow:
-								"0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6)",
+								"0 2px 4px rgba(0, 0, 0, 1), 0 4px 8px rgba(0, 0, 0, 0.8), 0 8px 16px rgba(0, 0, 0, 0.6)",
 							fontFamily: "Poppins, sans-serif",
 							color: "white",
 						}}>
@@ -299,17 +295,63 @@ export default function ServicesPage() {
 						variant="h2"
 						component="p"
 						sx={{
-							fontSize: { xs: "1.3rem", md: "1.7rem" },
+							fontSize: {
+								md: "1.7rem",
+								lg: "1.9rem",
+								xl: "2.1rem",
+							},
 							fontWeight: 400,
 							opacity: 0.95,
-							maxWidth: "700px",
+							maxWidth: { lg: "800px", xl: "900px" },
 							mx: "auto",
 							lineHeight: 1.6,
 							color: "white",
 							textShadow: "0 2px 4px rgba(0, 0, 0, 0.7)",
 						}}>
 						Expert technology services spanning healthcare IT, software
-						development, cloud solutions and digital transformation
+						development, cloud solutions and digital transformation across
+						multiple industries.
+					</Typography>
+				</Box>
+
+				{/* Mobile Content Below Image - Only on Mobile */}
+				<Box
+					sx={{
+						display: { xs: "block", md: "none" },
+						textAlign: "center",
+						mt: 4,
+						px: 2,
+					}}>
+					<Typography
+						variant="h1"
+						component="h1"
+						sx={{
+							fontSize: "2.5rem",
+							fontWeight: 700,
+							mb: 3,
+							fontFamily: "Poppins, sans-serif",
+							color: "#2E7D32",
+							background: "linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)",
+							backgroundClip: "text",
+							WebkitBackgroundClip: "text",
+							WebkitTextFillColor: "transparent",
+						}}>
+						IT Services & Consulting
+					</Typography>
+					<Typography
+						variant="h2"
+						component="p"
+						sx={{
+							fontSize: "1.2rem",
+							fontWeight: 400,
+							lineHeight: 1.6,
+							color: "#555",
+							maxWidth: "600px",
+							mx: "auto",
+						}}>
+						Expert technology services spanning healthcare IT, software
+						development, cloud solutions and digital transformation across
+						multiple industries.
 					</Typography>
 				</Box>
 			</Box>
@@ -332,9 +374,9 @@ export default function ServicesPage() {
 							mx: "auto",
 							lineHeight: 1.6,
 						}}>
-						Expert technology services spanning healthcare IT, software
-						development, cloud solutions and digital transformation across
-						multiple industries.
+						Empowering healthcare organizations with innovative technology
+						solutions that drive efficiency, enhance patient care, and ensure
+						regulatory compliance.
 					</Typography>
 					<Typography
 						variant="body1"

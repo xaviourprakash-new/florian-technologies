@@ -168,7 +168,11 @@ const ImageCarousel: React.FC = () => {
 			sx={{
 				"position": "relative",
 				"width": "100%",
-				"height": { xs: "500px", md: "600px" },
+				"maxWidth": { xs: "100%", md: "95%", lg: "92%", xl: "90%" },
+				"mx": "auto",
+				"height": { xs: "550px", md: "650px", lg: "750px", xl: "850px" },
+				"px": { xs: 2, md: 4, lg: 6, xl: 8 },
+				"py": { xs: 3, md: 4, lg: 5, xl: 6 },
 				"borderRadius": "24px",
 				"overflow": "hidden",
 				"background": "linear-gradient(135deg, #f8fffe 0%, #ffffff 100%)",
@@ -240,7 +244,7 @@ const ImageCarousel: React.FC = () => {
 							objectPosition: "center center",
 						}}
 						priority
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
 						quality={90}
 					/>
 				</Box>
@@ -302,7 +306,12 @@ const ImageCarousel: React.FC = () => {
 						component="h2"
 						sx={{
 							color: "white",
-							fontSize: { xs: "2rem", md: "2.8rem" },
+							fontSize: {
+								xs: "2rem",
+								md: "2.8rem",
+								lg: "3.2rem",
+								xl: "3.6rem",
+							},
 							fontWeight: 700,
 							lineHeight: 1.2,
 							mb: 2,
@@ -324,9 +333,14 @@ const ImageCarousel: React.FC = () => {
 						variant="body1"
 						sx={{
 							color: "rgba(255, 255, 255, 0.95)",
-							fontSize: { xs: "1rem", md: "1.2rem" },
+							fontSize: {
+								xs: "1rem",
+								md: "1.2rem",
+								lg: "1.4rem",
+								xl: "1.6rem",
+							},
 							lineHeight: 1.6,
-							maxWidth: "600px",
+							maxWidth: { xs: "600px", lg: "700px", xl: "800px" },
 							textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)",
 							animation: isTransitioning
 								? "none"
