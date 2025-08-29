@@ -164,14 +164,20 @@ const ImageCarousel: React.FC = () => {
 	const currentItem = carouselItems[currentIndex];
 
 	return (
-		<Box>
+		<Box
+			sx={{
+				position: "relative",
+				width: "100%",
+				overflow: "hidden",
+				px: { xs: 0, xl: "10%" }, // Add padding for very large screens
+			}}>
 			{/* Main Carousel Container */}
 			<Box
 				sx={{
 					"position": "relative",
 					"width": "100%",
-					"maxWidth": { xs: "100%", md: "98%", lg: "96%", xl: "95%" }, // Expanded horizontally for desktop
-					"mx": "auto",
+					"maxWidth": { xs: "100%", xl: "80%" }, // Limit width on very large screens
+					"mx": "auto", // Center the container
 					"height": {
 						xs: "400px",
 						sm: "450px",
@@ -254,11 +260,11 @@ const ImageCarousel: React.FC = () => {
 							alt={currentItem.title}
 							fill
 							style={{
-								objectFit: "cover",
+								objectFit: "contain", // Use contain to prevent cropping on large screens
 								objectPosition: "center center",
 							}}
 							priority
-							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+							sizes="(max-width: 768px) 100vw, (max-width: 1536px) 90vw, 80vw"
 							quality={90}
 						/>
 					</Box>

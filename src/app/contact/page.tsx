@@ -76,13 +76,16 @@ export default function ContactPage() {
 					width: "100%",
 					overflow: "hidden",
 					mb: 4,
+					px: { xs: 0, xl: "10%" }, // Add padding for very large screens
 				}}>
-				{/* Image Container - Responsive Height */}
+				{/* Image Container - Responsive Height and Width */}
 				<Box
 					sx={{
 						position: "relative",
 						height: { xs: "400px", sm: "500px", md: "600px", lg: "700px" },
 						width: "100%",
+						maxWidth: { xs: "100%", xl: "80%" }, // Limit width on very large screens
+						mx: "auto", // Center the container
 					}}>
 					{/* Mobile Image - Show actual size */}
 					<Box
@@ -105,7 +108,7 @@ export default function ContactPage() {
 						/>
 					</Box>
 
-					{/* Desktop Image - Cover for full background */}
+					{/* Desktop Image - Cover for medium screens, contain for large screens */}
 					<Box
 						sx={{
 							display: { xs: "none", md: "block" },
@@ -117,9 +120,9 @@ export default function ContactPage() {
 							src="/images/get_in_touch.png"
 							alt="Contact Florian Technologies"
 							fill
-							sizes="(max-width: 767px) 0px, 100vw"
+							sizes="(max-width: 767px) 0px, (max-width: 1536px) 100vw, 80vw"
 							style={{
-								objectFit: "cover",
+								objectFit: "contain", // Use contain for all desktop sizes to prevent cropping
 								objectPosition: "center",
 							}}
 							priority
