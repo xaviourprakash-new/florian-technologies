@@ -163,7 +163,6 @@ const Header: React.FC = () => {
 							borderRadius: "8px",
 							objectFit: "contain",
 							maxWidth: "300px",
-							height: "auto",
 						}}
 					/>
 				</Box>
@@ -266,7 +265,7 @@ const Header: React.FC = () => {
 						cursor: "pointer",
 						textDecoration: "none",
 						color: "inherit",
-						ml: -3.3, // Maximum negative left margin to push logo as far left as possible
+						ml: 1, // Maximum negative left margin to push logo as far left as possible
 						pl: 0, // No left padding
 					}}>
 					<Image
@@ -280,7 +279,6 @@ const Header: React.FC = () => {
 							borderRadius: "6px",
 							objectFit: "contain",
 							maxWidth: "160px",
-							height: "auto",
 						}}
 					/>
 				</Box>
@@ -354,7 +352,6 @@ const Header: React.FC = () => {
 								borderRadius: "8px",
 								objectFit: "contain",
 								maxWidth: "180px",
-								height: "auto",
 								filter: "brightness(1.1) contrast(1.1)",
 							}}
 						/>
