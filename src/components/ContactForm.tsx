@@ -384,7 +384,7 @@ export default function ContactForm() {
 						value={formData.message}
 						onChange={handleInputChange}
 						multiline
-						rows={10}
+						rows={9.5}
 						required
 						error={touched.message && !!errors.message}
 						helperText={touched.message && errors.message}
