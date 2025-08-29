@@ -7,8 +7,8 @@ import {
 	Chip,
 } from "@mui/material";
 import Image from "next/image";
-import { generatePageMetadata, generateProductSchema } from "../../lib/seo";
-import SEOScript from "../../components/SEOScript";
+import { generatePageMetadata, generateProductSchema } from "@/lib/seo";
+import SEOScript from "@/components/SEOScript";
 
 export const metadata = generatePageMetadata("products");
 

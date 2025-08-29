@@ -133,8 +133,15 @@ const Header: React.FC = () => {
 					display: { xs: "none", md: "block" },
 				},
 			}}>
+			{/* Desktop Header */}
 			<Toolbar
-				sx={{ px: { xs: 2, md: 4 }, py: 0.5, position: "relative", zIndex: 1 }}>
+				sx={{
+					px: 4,
+					py: 0.5,
+					position: "relative",
+					zIndex: 1,
+					display: { xs: "none", md: "flex" },
+				}}>
 				<Box
 					component={Link}
 					href="/"
@@ -160,8 +167,10 @@ const Header: React.FC = () => {
 						}}
 					/>
 				</Box>
+
 				<Box sx={{ flexGrow: 1 }} />
-				<Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5 }}>
+
+				<Box sx={{ display: "flex", gap: 0.5 }}>
 					{menuItems.slice(0, -1).map((item) => (
 						<Button
 							key={item.text}
@@ -173,8 +182,7 @@ const Header: React.FC = () => {
 					))}
 				</Box>
 
-				{/* Add space between menu and Contact button */}
-				<Box sx={{ ml: 3, display: { xs: "none", md: "block" } }}>
+				<Box sx={{ ml: 3 }}>
 					<Button
 						variant="contained"
 						component={Link}
@@ -235,18 +243,58 @@ const Header: React.FC = () => {
 						Contact
 					</Button>
 				</Box>
+			</Toolbar>
+
+			{/* Mobile Header */}
+			<Toolbar
+				sx={{
+					px: 0,
+					py: 0.5,
+					position: "relative",
+					zIndex: 1,
+					display: { xs: "flex", md: "none" },
+					justifyContent: "space-between",
+					alignItems: "center",
+					minHeight: "64px !important",
+				}}>
+				<Box
+					component={Link}
+					href="/"
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						cursor: "pointer",
+						textDecoration: "none",
+						color: "inherit",
+						ml: -3.3, // Maximum negative left margin to push logo as far left as possible
+						pl: 0, // No left padding
+					}}>
+					<Image
+						src="/images/floriantechnologies-title.jpg"
+						alt="Florian Technologies Logo"
+						width={160}
+						height={64}
+						priority
+						className="header-logo"
+						style={{
+							borderRadius: "6px",
+							objectFit: "contain",
+							maxWidth: "160px",
+							height: "auto",
+						}}
+					/>
+				</Box>
+
 				<IconButton
-					size="large"
-					edge="end"
+					size="small"
 					color="inherit"
 					aria-label="menu"
 					onClick={handleDrawerToggle}
 					sx={{
-						"display": { xs: "flex", md: "none" },
 						"color": "#2E7D32",
 						"p": 1.5,
 						"mr": 2,
-						"borderRadius": "12px",
+						"borderRadius": "10px",
 						"background":
 							"linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(255, 255, 255, 0.8) 100%)",
 						"border": "1px solid rgba(46, 125, 50, 0.1)",
@@ -257,13 +305,13 @@ const Header: React.FC = () => {
 						"&:hover": {
 							background:
 								"linear-gradient(135deg, rgba(46, 125, 50, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%)",
-							transform: "scale(1.08) translateY(-1px)",
+							transform: "scale(1.05) translateY(-1px)",
 							boxShadow:
 								"0 4px 16px rgba(46, 125, 50, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
 							borderColor: "rgba(46, 125, 50, 0.2)",
 						},
 					}}>
-					<MenuIcon sx={{ fontSize: "1.5rem" }} />
+					<MenuIcon sx={{ fontSize: "1.2rem" }} />
 				</IconButton>
 			</Toolbar>
 

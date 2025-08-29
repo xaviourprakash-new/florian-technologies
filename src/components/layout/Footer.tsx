@@ -1,50 +1,54 @@
 "use client";
 
-import React from "react";
-import { Box, Container, Typography, Link as MuiLink } from "@mui/material";
+import { Box, Container, Link as MuiLink, Typography } from "@mui/material";
 import Link from "next/link";
-import { useIsClient } from "@/hooks";
+import React, { useEffect, useState } from "react";
 
 const Footer: React.FC = () => {
-	const isClient = useIsClient();
-	const currentYear = isClient ? new Date().getFullYear() : 2025;
+	// Initialize with current year to avoid hydration mismatches
+	const [currentYear, setCurrentYear] = useState(2025);
+
+	useEffect(() => {
+		// Update year on client side after hydration
+		setCurrentYear(new Date().getFullYear());
+	}, []);
+
 	return (
 		<Box
 			component="footer"
 			sx={{
-				py: { xs: 6, md: 4 }, // Increased mobile padding significantly
+				py: { xs: 6, md: 4 },
 				px: 2,
-				pb: { xs: "calc(2rem + env(safe-area-inset-bottom))", md: 4 }, // Enhanced safe area padding
+				pb: { xs: "calc(2rem + env(safe-area-inset-bottom))", md: 4 },
 				mt: "auto",
 				backgroundColor: "#2E7D32",
 				color: "#FFFFFF",
 				position: "relative",
-				zIndex: 20, // Increased z-index even more
-				minHeight: { xs: "200px", md: "auto" }, // Minimum height for mobile
+				zIndex: 20,
+				minHeight: { xs: "200px", md: "auto" },
 				width: "100%",
 				borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-				// Ensure footer stays at bottom and is fully visible
 				flexShrink: 0,
 			}}>
 			<Container
 				maxWidth="lg"
 				sx={{ position: "relative", zIndex: 1, height: "100%" }}>
+				{/* Desktop Footer Layout */}
 				<Box
 					sx={{
-						display: "flex",
-						flexDirection: { xs: "column", md: "row" },
-						alignItems: { xs: "stretch", md: "center" },
-						gap: { xs: 5, md: 2 }, // Increased mobile gap
-						textAlign: { xs: "left", md: "center" },
-						minHeight: { xs: "120px", md: "80px" }, // Ensure minimum content height
+						display: { xs: "none", md: "flex" },
+						flexDirection: "row",
+						alignItems: "center",
+						gap: 2,
+						textAlign: "center",
+						minHeight: "80px",
 						justifyContent: "space-between",
 					}}>
 					<Box
 						sx={{
 							display: "flex",
 							alignItems: "center",
-							width: { xs: "100%", md: "auto" },
-							mb: { xs: 0, md: 0 },
+							width: "auto",
 						}}>
 						<Typography
 							variant="h6"
@@ -52,9 +56,9 @@ const Footer: React.FC = () => {
 								fontWeight: 500,
 								color: "#FFFFFF",
 								fontStyle: "italic",
-								maxWidth: { xs: "100%", md: "530px" },
+								maxWidth: "530px",
 								lineHeight: 1.4,
-								fontSize: { xs: "1rem", md: "1.25rem" },
+								fontSize: "1.25rem",
 							}}>
 							&ldquo;Innovation is the bridge between medical excellence and
 							technological advancement&rdquo;
@@ -64,10 +68,8 @@ const Footer: React.FC = () => {
 					<Box
 						sx={{
 							display: "flex",
-							gap: { xs: 3, md: 3 },
-							flexWrap: "wrap",
-							justifyContent: { xs: "flex-start", md: "center" },
-							width: { xs: "100%", md: "auto" },
+							gap: 3,
+							justifyContent: "center",
 							alignItems: "center",
 						}}>
 						<MuiLink
@@ -76,9 +78,9 @@ const Footer: React.FC = () => {
 							sx={{
 								"color": "#FFFFFF",
 								"textDecoration": "none",
-								"fontSize": { xs: "0.95rem", md: "1rem" },
+								"fontSize": "1rem",
 								"fontWeight": 400,
-								"padding": { xs: "10px 12px", md: "8px 16px" },
+								"padding": "8px 16px",
 								"borderRadius": "10px",
 								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"position": "relative",
@@ -104,9 +106,9 @@ const Footer: React.FC = () => {
 							sx={{
 								"color": "#FFFFFF",
 								"textDecoration": "none",
-								"fontSize": { xs: "0.95rem", md: "1rem" },
+								"fontSize": "1rem",
 								"fontWeight": 400,
-								"padding": { xs: "10px 12px", md: "8px 16px" },
+								"padding": "8px 16px",
 								"borderRadius": "10px",
 								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"position": "relative",
@@ -132,9 +134,9 @@ const Footer: React.FC = () => {
 							sx={{
 								"color": "#FFFFFF",
 								"textDecoration": "none",
-								"fontSize": { xs: "0.95rem", md: "1rem" },
+								"fontSize": "1rem",
 								"fontWeight": 400,
-								"padding": { xs: "10px 12px", md: "8px 16px" },
+								"padding": "8px 16px",
 								"borderRadius": "10px",
 								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 								"position": "relative",
@@ -156,38 +158,145 @@ const Footer: React.FC = () => {
 						</MuiLink>
 					</Box>
 				</Box>
+
+				{/* Mobile Footer Layout */}
 				<Box
 					sx={{
-						borderTop: "1px solid rgba(255,255,255,0.2)",
-						mt: { xs: 5, md: 3 }, // Increased mobile margin
-						pt: { xs: 5, md: 3 }, // Increased mobile padding
-						pb: { xs: 3, md: 0 }, // Additional bottom padding for mobile
-						position: "relative",
-						zIndex: 1,
-						minHeight: { xs: "60px", md: "auto" }, // Ensure minimum height
+						display: { xs: "flex", md: "none" },
+						flexDirection: "column",
+						alignItems: "center",
+						gap: 4,
+						textAlign: "center",
+						minHeight: "120px",
+					}}>
+					{/* Mobile Quote */}
+					<Box sx={{ width: "100%" }}>
+						<Typography
+							variant="h6"
+							sx={{
+								fontWeight: 500,
+								color: "#FFFFFF",
+								fontStyle: "italic",
+								lineHeight: 1.4,
+								fontSize: "1rem",
+								textAlign: "center",
+								px: 1,
+							}}>
+							&ldquo;Innovation is the bridge between medical excellence and
+							technological advancement&rdquo;
+						</Typography>
+					</Box>
+
+					{/* Mobile Navigation Links */}
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							gap: 2,
+							width: "100%",
+							alignItems: "center",
+						}}>
+						<MuiLink
+							component={Link}
+							href="/privacy"
+							sx={{
+								"color": "#FFFFFF",
+								"textDecoration": "none",
+								"fontSize": "0.95rem",
+								"fontWeight": 400,
+								"padding": "12px 20px",
+								"borderRadius": "12px",
+								"transition": "all 0.3s ease",
+								"border": "1px solid rgba(255, 255, 255, 0.15)",
+								"background":
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+								"width": "80%",
+								"maxWidth": "280px",
+								"textAlign": "center",
+								"&:hover": {
+									textDecoration: "none",
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)",
+									transform: "translateY(-1px)",
+									borderColor: "rgba(255, 255, 255, 0.25)",
+								},
+							}}>
+							Privacy Policy
+						</MuiLink>
+						<MuiLink
+							component={Link}
+							href="/terms"
+							sx={{
+								"color": "#FFFFFF",
+								"textDecoration": "none",
+								"fontSize": "0.95rem",
+								"fontWeight": 400,
+								"padding": "12px 20px",
+								"borderRadius": "12px",
+								"transition": "all 0.3s ease",
+								"border": "1px solid rgba(255, 255, 255, 0.15)",
+								"background":
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+								"width": "80%",
+								"maxWidth": "280px",
+								"textAlign": "center",
+								"&:hover": {
+									textDecoration: "none",
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)",
+									transform: "translateY(-1px)",
+									borderColor: "rgba(255, 255, 255, 0.25)",
+								},
+							}}>
+							Terms of Service
+						</MuiLink>
+						<MuiLink
+							component={Link}
+							href="/contact"
+							sx={{
+								"color": "#FFFFFF",
+								"textDecoration": "none",
+								"fontSize": "0.95rem",
+								"fontWeight": 400,
+								"padding": "12px 20px",
+								"borderRadius": "12px",
+								"transition": "all 0.3s ease",
+								"border": "1px solid rgba(255, 255, 255, 0.15)",
+								"background":
+									"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+								"width": "80%",
+								"maxWidth": "280px",
+								"textAlign": "center",
+								"&:hover": {
+									textDecoration: "none",
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)",
+									transform: "translateY(-1px)",
+									borderColor: "rgba(255, 255, 255, 0.25)",
+								},
+							}}>
+							Contact Us
+						</MuiLink>
+					</Box>
+				</Box>
+
+				{/* Copyright Section - Shared for both Desktop and Mobile */}
+				<Box
+					sx={{
+						mt: { xs: 3, md: 3 },
+						pt: { xs: 3, md: 2 },
+						borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+						textAlign: "center",
 					}}>
 					<Typography
 						variant="body2"
-						align="center"
 						sx={{
-							color: "rgba(255,255,255,0.9)",
-							fontSize: { xs: "0.9rem", md: "0.875rem" },
-							lineHeight: 1.6,
+							color: "rgba(255, 255, 255, 0.8)",
+							fontSize: { xs: "0.8rem", md: "0.875rem" },
+							fontWeight: 300,
 						}}>
-						© {currentYear} Florian Technologies. All rights reserved.
-						<br />
-						<Typography
-							component="span"
-							variant="caption"
-							sx={{
-								color: "rgba(255,255,255,0.7)",
-								fontSize: { xs: "0.8rem", md: "0.75rem" },
-								display: "block",
-								mt: 1,
-							}}>
-							Innovative IT Solutions & Medical Products for Healthcare
-							Excellence
-						</Typography>
+						© {currentYear} Florian Technologies. Healthcare Technology
+						Solutions with Excellence.
 					</Typography>
 				</Box>
 			</Container>

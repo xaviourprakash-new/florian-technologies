@@ -1,10 +1,7 @@
 import { Container, Typography, Box, Card, CardContent } from "@mui/material";
 import Image from "next/image";
-import {
-	generatePageMetadata,
-	generateOrganizationSchema,
-} from "../../lib/seo";
-import SEOScript from "../../components/SEOScript";
+import { generatePageMetadata, generateOrganizationSchema } from "@/lib/seo";
+import SEOScript from "@/components/SEOScript";
 
 export const metadata = generatePageMetadata("about");
 

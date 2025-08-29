@@ -10,8 +10,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { CalendarToday, Person, ArrowForward } from "@mui/icons-material";
-import { generatePageMetadata } from "../../lib/seo";
-import SEOScript from "../../components/SEOScript";
+import { generatePageMetadata } from "@/lib/seo";
+import SEOScript from "@/components/SEOScript";
 
 export const metadata = generatePageMetadata("blog");
 

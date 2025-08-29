@@ -13,29 +13,29 @@ import {
 	generatePageMetadata,
 	generateServiceSchema,
 	generateBreadcrumbSchema,
-} from "../../lib/seo";
-import SEOScript from "../../components/SEOScript";
+} from "@/lib/seo";
+import SEOScript from "@/components/SEOScript";
 
 export const metadata = generatePageMetadata("services");
 
 export default function ServicesPage() {
 	const serviceSchemas = [
 		generateServiceSchema({
-			name: "Healthcare IT Consulting",
+			name: "IT Consulting & Strategy",
 			description:
-				"Strategic IT consulting services for healthcare organizations",
+				"Strategic IT consulting services for organizations across all industries",
 			serviceType: "Consulting",
 		}),
 		generateServiceSchema({
 			name: "Custom Software Development",
 			description:
-				"Tailored software solutions for medical and healthcare applications",
+				"Tailored software solutions for businesses across multiple domains",
 			serviceType: "Development",
 		}),
 		generateServiceSchema({
 			name: "Cloud Infrastructure Solutions",
 			description:
-				"Secure cloud migration and infrastructure management for healthcare",
+				"Secure cloud migration and infrastructure management for all industries",
 			serviceType: "Cloud Services",
 		}),
 		generateBreadcrumbSchema([
@@ -46,141 +46,151 @@ export default function ServicesPage() {
 
 	const services = [
 		{
-			name: "Healthcare IT Consulting",
+			name: "IT Consulting & Strategy",
 			category: "Strategic Consulting",
 			description:
-				"Expert IT consulting services tailored for healthcare organizations. We help hospitals, clinics and medical facilities optimize their technology infrastructure, ensure regulatory compliance and improve operational efficiency.",
+				"Comprehensive IT consulting services for businesses across all industries. We help organizations optimize their technology infrastructure, drive digital transformation, and align IT strategy with business objectives.",
 			features: [
 				"Technology Assessment",
 				"Digital Transformation",
-				"Compliance Planning",
+				"Strategic Planning",
 				"Workflow Optimization",
 				"ROI Analysis",
 			],
 			deliverables: [
 				"Technology Roadmap",
 				"Implementation Plan",
-				"Compliance Documentation",
+				"Best Practices Guide",
 				"Staff Training",
 			],
 			industries: [
-				"Hospitals",
-				"Clinics",
-				"Medical Centers",
-				"Healthcare Networks",
+				"Healthcare",
+				"Finance & Banking",
+				"E-commerce",
+				"Manufacturing",
+				"Education",
+				"Retail",
 			],
 		},
 		{
 			name: "Custom Software Development",
 			category: "Development Services",
 			description:
-				"Bespoke software solutions designed specifically for medical and healthcare applications. From electronic health records to patient management systems, we create secure, scalable and user-friendly applications.",
+				"Bespoke software solutions designed for businesses across multiple domains. From web applications to enterprise systems, we create secure, scalable, and user-friendly applications tailored to your specific needs.",
 			features: [
-				"Healthcare-Focused Development",
-				"HIPAA Compliance",
+				"Full-Stack Development",
+				"Industry Compliance",
 				"Scalable Architecture",
 				"User-Centric Design",
-				"Integration Capabilities",
+				"API Integration",
 			],
 			deliverables: [
 				"Custom Applications",
-				"API Integration",
+				"Web & Mobile Apps",
 				"Documentation",
 				"Testing & QA",
 			],
 			industries: [
+				"Technology Startups",
+				"Financial Services",
+				"E-commerce Platforms",
 				"Healthcare Providers",
-				"Medical Startups",
-				"Pharmaceutical Companies",
-				"Research Institutions",
+				"Educational Institutions",
+				"Manufacturing",
 			],
 		},
 		{
 			name: "Cloud Infrastructure Solutions",
 			category: "Cloud Services",
 			description:
-				"Secure cloud migration and infrastructure management services designed for healthcare organizations. We ensure data security, regulatory compliance and optimal performance in cloud environments.",
+				"Secure cloud migration and infrastructure management services for organizations across all sectors. We ensure optimal performance, cost efficiency, and scalability in cloud environments.",
 			features: [
 				"Cloud Migration",
-				"Security Management",
+				"Infrastructure Management",
 				"Disaster Recovery",
 				"Performance Optimization",
 				"24/7 Monitoring",
 			],
 			deliverables: [
 				"Cloud Architecture",
-				"Migration Plan",
+				"Migration Strategy",
 				"Security Protocols",
 				"Monitoring Dashboard",
 			],
 			industries: [
+				"Enterprise Organizations",
+				"Growing Businesses",
+				"SaaS Companies",
+				"Financial Institutions",
+				"Government Agencies",
 				"Healthcare Systems",
-				"Medical Practices",
-				"Telehealth Providers",
-				"Health Insurance",
 			],
 		},
 		{
 			name: "Data Analytics & Business Intelligence",
 			category: "Analytics Services",
 			description:
-				"Advanced data analytics and business intelligence solutions that transform healthcare data into actionable insights. Improve patient outcomes, operational efficiency and decision-making processes.",
+				"Advanced data analytics and business intelligence solutions that transform raw data into actionable insights. Improve decision-making, operational efficiency, and competitive advantage across any industry.",
 			features: [
 				"Data Visualization",
 				"Predictive Analytics",
 				"Real-time Reporting",
 				"Performance Metrics",
-				"Trend Analysis",
+				"Market Intelligence",
 			],
 			deliverables: [
 				"Analytics Platform",
 				"Custom Reports",
-				"Dashboards",
+				"Interactive Dashboards",
 				"Training Materials",
 			],
 			industries: [
-				"Large Hospitals",
-				"Healthcare Networks",
-				"Public Health",
-				"Medical Research",
+				"Retail & E-commerce",
+				"Financial Services",
+				"Manufacturing",
+				"Healthcare",
+				"Technology Companies",
+				"Government",
 			],
 		},
 		{
 			name: "System Integration Services",
 			category: "Integration Solutions",
 			description:
-				"Comprehensive system integration services that connect disparate healthcare systems, medical devices and software applications for seamless data flow and improved interoperability.",
+				"Comprehensive system integration services that connect disparate systems, applications, and platforms for seamless data flow and improved operational efficiency across your organization.",
 			features: [
 				"API Development",
-				"Data Mapping",
-				"Real-time Synchronization",
+				"Data Synchronization",
 				"Legacy System Integration",
 				"Workflow Automation",
+				"Third-party Integrations",
 			],
 			deliverables: [
 				"Integration Architecture",
 				"API Documentation",
-				"Testing Suite",
+				"Testing Framework",
 				"Maintenance Plan",
 			],
 			industries: [
-				"Multi-location Clinics",
-				"Hospital Networks",
-				"Medical Device Companies",
-				"Healthcare SaaS",
+				"Multi-location Businesses",
+				"Enterprise Organizations",
+				"SaaS Providers",
+				"E-commerce Companies",
+				"Financial Services",
+				"Healthcare Networks",
 			],
 		},
 		{
 			name: "Cybersecurity & Compliance",
 			category: "Security Services",
 			description:
-				"Comprehensive cybersecurity and regulatory compliance services protecting sensitive healthcare data and ensuring adherence to industry standards like HIPAA, HITECH and SOC 2.",
+				"Comprehensive cybersecurity and regulatory compliance services protecting sensitive business data and ensuring adherence to industry standards and regulations across all sectors.",
 			features: [
 				"Security Assessment",
 				"Compliance Auditing",
 				"Risk Management",
 				"Incident Response",
-				"Employee Training",
+				"Security Training",
 			],
 			deliverables: [
 				"Security Assessment Report",
@@ -189,10 +199,12 @@ export default function ServicesPage() {
 				"Training Program",
 			],
 			industries: [
-				"All Healthcare Organizations",
-				"Telehealth Platforms",
-				"Medical Software Companies",
-				"Health Plans",
+				"Financial Services",
+				"Healthcare Organizations",
+				"E-commerce Platforms",
+				"Government Agencies",
+				"Technology Companies",
+				"Manufacturing",
 			],
 		},
 	];
@@ -308,9 +320,9 @@ export default function ServicesPage() {
 							color: "white",
 							textShadow: "0 2px 4px rgba(0, 0, 0, 0.7)",
 						}}>
-						Expert technology services spanning healthcare IT, software
-						development, cloud solutions and digital transformation across
-						multiple industries.
+						Expert technology services spanning multiple industries including
+						healthcare, finance, e-commerce, manufacturing, and emerging sectors
+						globally.
 					</Typography>
 				</Box>
 
@@ -349,9 +361,9 @@ export default function ServicesPage() {
 							maxWidth: "600px",
 							mx: "auto",
 						}}>
-						Expert technology services spanning healthcare IT, software
-						development, cloud solutions and digital transformation across
-						multiple industries.
+						Expert technology services spanning multiple industries including
+						healthcare, finance, e-commerce, manufacturing, and emerging sectors
+						globally.
 					</Typography>
 				</Box>
 			</Box>
@@ -374,9 +386,9 @@ export default function ServicesPage() {
 							mx: "auto",
 							lineHeight: 1.6,
 						}}>
-						Empowering healthcare organizations with innovative technology
-						solutions that drive efficiency, enhance patient care, and ensure
-						regulatory compliance.
+						Delivering comprehensive IT solutions to businesses across diverse
+						industries worldwide. From startups to enterprises, we provide
+						technology expertise that drives growth, efficiency, and innovation.
 					</Typography>
 					<Typography
 						variant="body1"
@@ -385,7 +397,7 @@ export default function ServicesPage() {
 							fontWeight: 600,
 							fontSize: "1.1rem",
 						}}>
-						Healthcare-Focused • Multi-Domain Expertise • Proven Results
+						Multi-Industry • Global Reach • Proven Expertise
 					</Typography>
 				</Box>
 

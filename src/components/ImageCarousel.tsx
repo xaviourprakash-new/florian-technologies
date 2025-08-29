@@ -164,412 +164,571 @@ const ImageCarousel: React.FC = () => {
 	const currentItem = carouselItems[currentIndex];
 
 	return (
-		<Box
-			sx={{
-				"position": "relative",
-				"width": "100%",
-				"maxWidth": { xs: "100%", md: "95%", lg: "92%", xl: "90%" },
-				"mx": "auto",
-				"height": { xs: "550px", md: "650px", lg: "750px", xl: "850px" },
-				"px": { xs: 2, md: 4, lg: 6, xl: 8 },
-				"py": { xs: 3, md: 4, lg: 5, xl: 6 },
-				"borderRadius": "24px",
-				"overflow": "hidden",
-				"background": "linear-gradient(135deg, #f8fffe 0%, #ffffff 100%)",
-				"boxShadow": "0 20px 60px rgba(46, 125, 50, 0.15)",
-				"border": "1px solid rgba(46, 125, 50, 0.1)",
-				"&:hover": {
-					boxShadow: "0 30px 80px rgba(46, 125, 50, 0.25)",
-					transform: "translateY(-5px)",
-				},
-				"transition": "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-			}}
-			onMouseEnter={() => setIsAutoPlaying(false)}
-			onMouseLeave={() => setIsAutoPlaying(true)}>
-			{/* Background Image with 3D Animation and Better Scaling */}
+		<Box>
+			{/* Main Carousel Container */}
 			<Box
 				sx={{
-					"position": "absolute",
-					"top": 0,
-					"left": 0,
-					"right": 0,
-					"bottom": 0,
-					"perspective": "1000px",
-					"&::before": {
-						content: '""',
-						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						background:
-							"linear-gradient(135deg, rgba(46, 125, 50, 0.2) 0%, rgba(27, 94, 32, 0.3) 100%)",
-						zIndex: 2,
+					"position": "relative",
+					"width": "100%",
+					"maxWidth": { xs: "100%", md: "98%", lg: "96%", xl: "95%" }, // Expanded horizontally for desktop
+					"mx": "auto",
+					"height": {
+						xs: "400px",
+						sm: "450px",
+						md: "650px", // Reverted to original height
+						lg: "750px", // Reverted to original height
+						xl: "850px", // Reverted to original height
 					},
-					"&::after": {
-						content: '""',
-						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						height: "2px",
-						background:
-							"linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%)",
-						animation: `${shimmer} 3s ease-in-out infinite`,
-						zIndex: 3,
+					"px": { xs: 1, sm: 1.5, md: 4, lg: 6, xl: 8 },
+					"py": { xs: 1, sm: 1.5, md: 4, lg: 5, xl: 6 },
+					"borderRadius": { xs: "16px", md: "24px" },
+					"overflow": "hidden",
+					"background": "linear-gradient(135deg, #f8fffe 0%, #ffffff 100%)",
+					"boxShadow": {
+						xs: "0 8px 32px rgba(46, 125, 50, 0.1)",
+						md: "0 20px 60px rgba(46, 125, 50, 0.15)",
 					},
+					"border": "1px solid rgba(46, 125, 50, 0.1)",
+					"&:hover": {
+						boxShadow: {
+							xs: "0 12px 40px rgba(46, 125, 50, 0.15)",
+							md: "0 30px 80px rgba(46, 125, 50, 0.25)",
+						},
+						transform: { xs: "translateY(-2px)", md: "translateY(-5px)" },
+					},
+					"transition": "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 				}}
-				onMouseEnter={() => setIsImageHovered(true)}
-				onMouseLeave={() => setIsImageHovered(false)}>
+				onMouseEnter={() => setIsAutoPlaying(false)}
+				onMouseLeave={() => setIsAutoPlaying(true)}>
+				{/* Background Image with 3D Animation and Better Scaling */}
 				<Box
 					sx={{
-						position: "relative",
-						width: "100%",
-						height: "100%",
-						transformStyle: "preserve-3d",
-						opacity: isTransitioning ? 0.8 : 1,
+						"position": "absolute",
+						"top": 0,
+						"left": 0,
+						"right": 0,
+						"bottom": 0,
+						"perspective": "1000px",
+						"&::before": {
+							content: '""',
+							position: "absolute",
+							top: 0,
+							left: 0,
+							right: 0,
+							bottom: 0,
+							background:
+								"linear-gradient(135deg, rgba(46, 125, 50, 0.2) 0%, rgba(27, 94, 32, 0.3) 100%)",
+							zIndex: 2,
+						},
+						"&::after": {
+							content: '""',
+							position: "absolute",
+							top: 0,
+							left: 0,
+							right: 0,
+							height: "2px",
+							background:
+								"linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%)",
+							animation: `${shimmer} 3s ease-in-out infinite`,
+							zIndex: 3,
+						},
+					}}
+					onMouseEnter={() => setIsImageHovered(true)}
+					onMouseLeave={() => setIsImageHovered(false)}>
+					<Box
+						sx={{
+							position: "relative",
+							width: "100%",
+							height: "100%",
+							transformStyle: "preserve-3d",
+							opacity: isTransitioning ? 0.8 : 1,
+							transform: isTransitioning
+								? transitionDirection === "next"
+									? "scale(0.95) rotateY(5deg)"
+									: "scale(0.95) rotateY(-5deg)"
+								: "scale(1) rotateY(0deg)",
+							transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+						}}>
+						<Image
+							src={currentItem.image}
+							alt={currentItem.title}
+							fill
+							style={{
+								objectFit: "cover",
+								objectPosition: "center center",
+							}}
+							priority
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+							quality={90}
+						/>
+					</Box>
+				</Box>
+
+				{/* Content Overlay with 3D Animation */}
+				<Box
+					sx={{
+						position: "absolute",
+						bottom: 0,
+						left: 0,
+						right: 0,
+						p: { xs: 2, sm: 3, md: 6 },
+						background:
+							"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.6) 100%)",
+						zIndex: 4,
 						transform: isTransitioning
 							? transitionDirection === "next"
-								? "scale(0.95) rotateY(5deg)"
-								: "scale(0.95) rotateY(-5deg)"
-							: "scale(1) rotateY(0deg)",
+								? "perspective(1000px) rotateX(10deg) translateY(30px)"
+								: "perspective(1000px) rotateX(-10deg) translateY(30px)"
+							: "perspective(1000px) rotateX(0deg) translateY(0px)",
+						opacity: isTransitioning ? 0.7 : 1,
 						transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 					}}>
-					<Image
-						src={currentItem.image}
-						alt={currentItem.title}
-						fill
-						style={{
-							objectFit: "cover",
-							objectPosition: "center center",
-						}}
-						priority
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-						quality={90}
-					/>
-				</Box>
-			</Box>
-
-			{/* Content Overlay with 3D Animation */}
-			<Box
-				sx={{
-					position: "absolute",
-					bottom: 0,
-					left: 0,
-					right: 0,
-					p: { xs: 4, md: 6 },
-					background:
-						"linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.6) 100%)",
-					zIndex: 4,
-					transform: isTransitioning
-						? transitionDirection === "next"
-							? "perspective(1000px) rotateX(10deg) translateY(30px)"
-							: "perspective(1000px) rotateX(-10deg) translateY(30px)"
-						: "perspective(1000px) rotateX(0deg) translateY(0px)",
-					opacity: isTransitioning ? 0.7 : 1,
-					transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-				}}>
-				<Box
-					sx={{
-						transform: isTransitioning ? "scale(0.95)" : "scale(1)",
-						transition: "transform 0.6s ease-out",
-					}}>
-					{/* Category Badge */}
 					<Box
 						sx={{
-							display: "inline-block",
-							backgroundColor: "rgba(255, 255, 255, 0.95)",
-							color: "#2E7D32",
-							px: 3,
-							py: 1,
-							borderRadius: "20px",
-							fontSize: "0.85rem",
-							fontWeight: 600,
-							mb: 3,
-							backdropFilter: "blur(10px)",
-							border: "1px solid rgba(46, 125, 50, 0.3)",
-							boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-							animation: isTransitioning
-								? "none"
-								: `${slideIn3D} 0.8s ease-out 0.3s both`,
-							transform: isTransitioning
-								? "perspective(500px) rotateY(45deg) scale(0.8)"
-								: "perspective(500px) rotateY(0deg) scale(1)",
-							transition: "transform 0.4s ease-out",
-						}}>
-						{currentItem.category}
-					</Box>
-
-					{/* Title */}
-					<Typography
-						variant="h2"
-						component="h2"
-						sx={{
-							color: "white",
-							fontSize: {
-								xs: "2rem",
-								md: "2.8rem",
-								lg: "3.2rem",
-								xl: "3.6rem",
-							},
-							fontWeight: 700,
-							lineHeight: 1.2,
-							mb: 2,
-							fontFamily: "Poppins, sans-serif",
-							textShadow: "0 4px 20px rgba(0, 0, 0, 0.8)",
-							animation: isTransitioning
-								? "none"
-								: `${slideIn3D} 0.8s ease-out 0.5s both`,
-							transform: isTransitioning
-								? "perspective(800px) rotateX(30deg) translateY(20px) scale(0.9)"
-								: "perspective(800px) rotateX(0deg) translateY(0px) scale(1)",
-							transition: "transform 0.5s ease-out",
-						}}>
-						{currentItem.title}
-					</Typography>
-
-					{/* Description */}
-					<Typography
-						variant="body1"
-						sx={{
-							color: "rgba(255, 255, 255, 0.95)",
-							fontSize: {
-								xs: "1rem",
-								md: "1.2rem",
-								lg: "1.4rem",
-								xl: "1.6rem",
-							},
-							lineHeight: 1.6,
-							maxWidth: { xs: "600px", lg: "700px", xl: "800px" },
-							textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)",
-							animation: isTransitioning
-								? "none"
-								: `${slideIn3D} 0.8s ease-out 0.7s both`,
-							transform: isTransitioning
-								? "perspective(600px) rotateX(20deg) translateY(15px) scale(0.95)"
-								: "perspective(600px) rotateX(0deg) translateY(0px) scale(1)",
+							transform: isTransitioning ? "scale(0.95)" : "scale(1)",
 							transition: "transform 0.6s ease-out",
 						}}>
-						{currentItem.description}
-					</Typography>
+						{/* Category Badge */}
+						<Box
+							sx={{
+								display: "inline-block",
+								backgroundColor: "rgba(255, 255, 255, 0.95)",
+								color: "#2E7D32",
+								px: { xs: 2, md: 3 },
+								py: { xs: 0.5, md: 1 },
+								borderRadius: { xs: "16px", md: "20px" },
+								fontSize: { xs: "0.75rem", md: "0.85rem" },
+								fontWeight: 600,
+								mb: { xs: 1.5, md: 3 },
+								backdropFilter: "blur(10px)",
+								border: "1px solid rgba(46, 125, 50, 0.3)",
+								boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+								animation: isTransitioning
+									? "none"
+									: `${slideIn3D} 0.8s ease-out 0.3s both`,
+								transform: isTransitioning
+									? "perspective(500px) rotateY(45deg) scale(0.8)"
+									: "perspective(500px) rotateY(0deg) scale(1)",
+								transition: "transform 0.4s ease-out",
+							}}>
+							{currentItem.category}
+						</Box>
+
+						{/* Title */}
+						<Typography
+							variant="h2"
+							component="h2"
+							sx={{
+								color: "white",
+								fontSize: {
+									xs: "1.4rem",
+									sm: "1.8rem",
+									md: "2.8rem",
+									lg: "3.2rem",
+									xl: "3.6rem",
+								},
+								fontWeight: 700,
+								lineHeight: 1.2,
+								mb: { xs: 1, sm: 1.5, md: 2 },
+								fontFamily: "Poppins, sans-serif",
+								textShadow: "0 4px 20px rgba(0, 0, 0, 0.8)",
+								animation: isTransitioning
+									? "none"
+									: `${slideIn3D} 0.8s ease-out 0.5s both`,
+								transform: isTransitioning
+									? "perspective(800px) rotateX(30deg) translateY(20px) scale(0.9)"
+									: "perspective(800px) rotateX(0deg) translateY(0px) scale(1)",
+								transition: "transform 0.5s ease-out",
+							}}>
+							{currentItem.title}
+						</Typography>
+
+						{/* Description */}
+						<Typography
+							variant="body1"
+							sx={{
+								color: "rgba(255, 255, 255, 0.95)",
+								fontSize: {
+									xs: "0.85rem",
+									sm: "0.95rem",
+									md: "1.2rem",
+									lg: "1.4rem",
+									xl: "1.6rem",
+								},
+								lineHeight: { xs: 1.4, md: 1.6 },
+								maxWidth: {
+									xs: "100%",
+									sm: "90%",
+									md: "600px",
+									lg: "700px",
+									xl: "800px",
+								},
+								textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)",
+								animation: isTransitioning
+									? "none"
+									: `${slideIn3D} 0.8s ease-out 0.7s both`,
+								transform: isTransitioning
+									? "perspective(600px) rotateX(20deg) translateY(15px) scale(0.95)"
+									: "perspective(600px) rotateX(0deg) translateY(0px) scale(1)",
+								transition: "transform 0.6s ease-out",
+							}}>
+							{currentItem.description}
+						</Typography>
+					</Box>
 				</Box>
+
+				{/* Enhanced 3D Navigation Arrows - Desktop (inside carousel) */}
+				<IconButton
+					onClick={prevSlide}
+					disabled={isTransitioning}
+					sx={{
+						"position": "absolute",
+						"left": { xs: "none", md: 24 },
+						"top": { xs: "none", md: "50%" },
+						"display": { xs: "none", md: "flex" },
+						"transform": "translateY(-50%)",
+						"background":
+							"linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 252, 248, 0.6) 100%)",
+						"color": "rgba(46, 125, 50, 0.7)",
+						"opacity": isImageHovered ? 0.8 : 0.3,
+						"backdropFilter": "blur(15px)",
+						"border": "1px solid rgba(255, 255, 255, 0.2)",
+						"boxShadow":
+							"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+						"zIndex": 5,
+						"borderRadius": "16px",
+						"width": "56px",
+						"height": "56px",
+						"&::before": {
+							content: '""',
+							position: "absolute",
+							top: 0,
+							left: 0,
+							right: 0,
+							bottom: 0,
+							background:
+								"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.05) 100%)",
+							opacity: 0,
+							transition: "opacity 0.4s ease",
+							borderRadius: "16px",
+							pointerEvents: "none",
+						},
+						"&:hover": {
+							background:
+								"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
+							color: "white",
+							opacity: 1,
+							transform:
+								"translateY(-50%) scale(1.15) perspective(500px) rotateY(-10deg)",
+							boxShadow:
+								"0 12px 40px rgba(46, 125, 50, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+							borderColor: "rgba(255, 255, 255, 0.5)",
+						},
+						"&:hover::before": {
+							opacity: 1,
+						},
+						"&:disabled": {
+							opacity: 0.3,
+							transform: "translateY(-50%) scale(0.9)",
+						},
+						"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+						"animation": `${float} 4s ease-in-out infinite`,
+					}}>
+					<ArrowBackIosNew sx={{ fontSize: "24px" }} />
+				</IconButton>
+
+				<IconButton
+					onClick={nextSlide}
+					disabled={isTransitioning}
+					sx={{
+						"position": "absolute",
+						"right": { xs: "none", md: 24 },
+						"top": { xs: "none", md: "50%" },
+						"display": { xs: "none", md: "flex" },
+						"transform": "translateY(-50%)",
+						"background":
+							"linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 252, 248, 0.6) 100%)",
+						"color": "rgba(46, 125, 50, 0.7)",
+						"opacity": isImageHovered ? 0.8 : 0.3,
+						"backdropFilter": "blur(15px)",
+						"border": "1px solid rgba(255, 255, 255, 0.2)",
+						"boxShadow":
+							"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+						"zIndex": 5,
+						"borderRadius": "16px",
+						"width": "56px",
+						"height": "56px",
+						"&::before": {
+							content: '""',
+							position: "absolute",
+							top: 0,
+							left: 0,
+							right: 0,
+							bottom: 0,
+							background:
+								"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.05) 100%)",
+							opacity: 0,
+							transition: "opacity 0.4s ease",
+							borderRadius: "16px",
+							pointerEvents: "none",
+						},
+						"&:hover": {
+							background:
+								"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
+							color: "white",
+							opacity: 1,
+							transform:
+								"translateY(-50%) scale(1.15) perspective(500px) rotateY(10deg)",
+							boxShadow:
+								"0 12px 40px rgba(46, 125, 50, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+							borderColor: "rgba(255, 255, 255, 0.5)",
+						},
+						"&:hover::before": {
+							opacity: 1,
+						},
+						"&:disabled": {
+							opacity: 0.3,
+							transform: "translateY(-50%) scale(0.9)",
+						},
+						"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+						"animation": `${float} 4s ease-in-out infinite 2s`,
+					}}>
+					<ArrowForwardIos sx={{ fontSize: "24px" }} />
+				</IconButton>
+
+				{/* Enhanced 3D Dots Indicator - Desktop Only */}
+				<Box
+					sx={{
+						position: "absolute",
+						bottom: { xs: 12, sm: 16, md: 24 },
+						left: "50%",
+						transform: isTransitioning
+							? "translateX(-50%) perspective(500px) rotateX(30deg) scale(0.9)"
+							: "translateX(-50%) perspective(500px) rotateX(0deg) scale(1)",
+						display: { xs: "none", md: "flex" }, // Hide on mobile, show on desktop
+						gap: { xs: 1, md: 2 },
+						zIndex: 5,
+						background:
+							"linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%)",
+						borderRadius: { xs: "20px", md: "24px" },
+						p: { xs: 1, md: 1.5 },
+						backdropFilter: "blur(15px)",
+						border: "1px solid rgba(255, 255, 255, 0.2)",
+						boxShadow:
+							"0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+						transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+					}}>
+					{carouselItems.map((_, index) => (
+						<Box
+							key={index}
+							onClick={() => goToSlide(index)}
+							sx={{
+								"width":
+									index === currentIndex
+										? { xs: 24, md: 40 }
+										: { xs: 8, md: 12 },
+								"height": { xs: 8, md: 12 },
+								"borderRadius": { xs: 4, md: 6 },
+								"background":
+									index === currentIndex
+										? "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 252, 248, 0.9) 100%)"
+										: "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%)",
+								"cursor": "pointer",
+								"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+								"border": "1px solid rgba(255, 255, 255, 0.4)",
+								"boxShadow":
+									index === currentIndex
+										? "0 4px 12px rgba(255, 255, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)"
+										: "0 2px 6px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+								"position": "relative",
+								"overflow": "hidden",
+								"&::before": {
+									content: '""',
+									position: "absolute",
+									top: 0,
+									left: 0,
+									right: 0,
+									bottom: 0,
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(46, 125, 50, 0.1) 100%)",
+									opacity: index === currentIndex ? 1 : 0,
+									transition: "opacity 0.4s ease",
+									borderRadius: { xs: "4px", md: "6px" },
+									pointerEvents: "none",
+								},
+								"&:hover": {
+									background:
+										"linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 252, 248, 0.8) 100%)",
+									transform: {
+										xs: "scale(1.2)",
+										md: "scale(1.3) perspective(300px) rotateZ(3deg)",
+									},
+									boxShadow:
+										"0 6px 20px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+									borderColor: "rgba(255, 255, 255, 0.6)",
+								},
+								"&:hover::before": {
+									opacity: 1,
+								},
+								"&:active": {
+									transform: {
+										xs: "scale(1.1)",
+										md: "scale(1.1) perspective(300px) rotateZ(-3deg)",
+									},
+								},
+								...(index === currentIndex && {
+									animation: {
+										xs: "none",
+										md: `${pulse} 2s ease-in-out infinite`,
+									},
+								}),
+							}}
+						/>
+					))}
+				</Box>
+
+				{/* Progress Bar */}
+				<Box
+					sx={{
+						"position": "absolute",
+						"top": 0,
+						"left": 0,
+						"height": "4px",
+						"backgroundColor": "rgba(46, 125, 50, 0.8)",
+						"borderRadius": "0 0 4px 0",
+						"zIndex": 5,
+						"animation": isAutoPlaying
+							? "progressBar 5s linear infinite"
+							: "none",
+						"@keyframes progressBar": {
+							"0%": { width: "0%" },
+							"100%": { width: "100%" },
+						},
+					}}
+				/>
 			</Box>
 
-			{/* Enhanced 3D Navigation Arrows */}
-			<IconButton
-				onClick={prevSlide}
-				disabled={isTransitioning}
-				sx={{
-					"position": "absolute",
-					"left": { xs: 16, md: 24 },
-					"top": "50%",
-					"transform": "translateY(-50%)",
-					"background":
-						"linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 252, 248, 0.6) 100%)",
-					"color": "rgba(46, 125, 50, 0.7)",
-					"opacity": isImageHovered ? 0.8 : 0.3,
-					"backdropFilter": "blur(15px)",
-					"border": "1px solid rgba(255, 255, 255, 0.2)",
-					"boxShadow":
-						"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
-					"zIndex": 5,
-					"borderRadius": "16px",
-					"width": "56px",
-					"height": "56px",
-					"&::before": {
-						content: '""',
-						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						background:
-							"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.05) 100%)",
-						opacity: 0,
-						transition: "opacity 0.4s ease",
-						borderRadius: "16px",
-						pointerEvents: "none",
-					},
-					"&:hover": {
-						background:
-							"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
-						color: "white",
-						opacity: 1,
-						transform:
-							"translateY(-50%) scale(1.15) perspective(500px) rotateY(-10deg)",
-						boxShadow:
-							"0 12px 40px rgba(46, 125, 50, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
-						borderColor: "rgba(255, 255, 255, 0.5)",
-					},
-					"&:hover::before": {
-						opacity: 1,
-					},
-					"&:disabled": {
-						opacity: 0.3,
-						transform: "translateY(-50%) scale(0.9)",
-					},
-					"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-					"animation": `${float} 4s ease-in-out infinite`,
-				}}>
-				<ArrowBackIosNew />
-			</IconButton>
-
-			<IconButton
-				onClick={nextSlide}
-				disabled={isTransitioning}
-				sx={{
-					"position": "absolute",
-					"right": { xs: 16, md: 24 },
-					"top": "50%",
-					"transform": "translateY(-50%)",
-					"background":
-						"linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 252, 248, 0.6) 100%)",
-					"color": "rgba(46, 125, 50, 0.7)",
-					"opacity": isImageHovered ? 0.8 : 0.3,
-					"backdropFilter": "blur(15px)",
-					"border": "1px solid rgba(255, 255, 255, 0.2)",
-					"boxShadow":
-						"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
-					"zIndex": 5,
-					"borderRadius": "16px",
-					"width": "56px",
-					"height": "56px",
-					"&::before": {
-						content: '""',
-						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						background:
-							"linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(46, 125, 50, 0.05) 100%)",
-						opacity: 0,
-						transition: "opacity 0.4s ease",
-						borderRadius: "16px",
-						pointerEvents: "none",
-					},
-					"&:hover": {
-						background:
-							"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
-						color: "white",
-						opacity: 1,
-						transform:
-							"translateY(-50%) scale(1.15) perspective(500px) rotateY(10deg)",
-						boxShadow:
-							"0 12px 40px rgba(46, 125, 50, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
-						borderColor: "rgba(255, 255, 255, 0.5)",
-					},
-					"&:hover::before": {
-						opacity: 1,
-					},
-					"&:disabled": {
-						opacity: 0.3,
-						transform: "translateY(-50%) scale(0.9)",
-					},
-					"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-					"animation": `${float} 4s ease-in-out infinite 2s`,
-				}}>
-				<ArrowForwardIos />
-			</IconButton>
-
-			{/* Enhanced 3D Dots Indicator */}
+			{/* Mobile Navigation Controls - Below the carousel */}
 			<Box
 				sx={{
-					position: "absolute",
-					bottom: 24,
-					left: "50%",
-					transform: isTransitioning
-						? "translateX(-50%) perspective(500px) rotateX(30deg) scale(0.9)"
-						: "translateX(-50%) perspective(500px) rotateX(0deg) scale(1)",
-					display: "flex",
-					gap: 2,
-					zIndex: 5,
-					background:
-						"linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%)",
-					borderRadius: "24px",
-					p: 1.5,
-					backdropFilter: "blur(15px)",
-					border: "1px solid rgba(255, 255, 255, 0.2)",
-					boxShadow:
-						"0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
-					transition: "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+					display: { xs: "flex", md: "none" },
+					justifyContent: "center",
+					alignItems: "center",
+					gap: 3,
+					mt: 2,
+					maxWidth: { xs: "100%", md: "95%", lg: "92%", xl: "90%" },
+					mx: "auto",
 				}}>
-				{carouselItems.map((_, index) => (
-					<Box
-						key={index}
-						onClick={() => goToSlide(index)}
-						sx={{
-							"width": index === currentIndex ? 40 : 12,
-							"height": 12,
-							"borderRadius": 6,
-							"background":
-								index === currentIndex
-									? "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 252, 248, 0.9) 100%)"
-									: "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%)",
-							"cursor": "pointer",
-							"transition": "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-							"border": "1px solid rgba(255, 255, 255, 0.4)",
-							"boxShadow":
-								index === currentIndex
-									? "0 4px 12px rgba(255, 255, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.8)"
-									: "0 2px 6px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
-							"position": "relative",
-							"overflow": "hidden",
-							"&::before": {
-								content: '""',
-								position: "absolute",
-								top: 0,
-								left: 0,
-								right: 0,
-								bottom: 0,
-								background:
-									"linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(46, 125, 50, 0.1) 100%)",
-								opacity: index === currentIndex ? 1 : 0,
-								transition: "opacity 0.4s ease",
-								borderRadius: "6px",
-								pointerEvents: "none",
-							},
-							"&:hover": {
-								background:
-									"linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 252, 248, 0.8) 100%)",
-								transform: "scale(1.3) perspective(300px) rotateZ(3deg)",
-								boxShadow:
-									"0 6px 20px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
-								borderColor: "rgba(255, 255, 255, 0.6)",
-							},
-							"&:hover::before": {
-								opacity: 1,
-							},
-							"&:active": {
-								transform: "scale(1.1) perspective(300px) rotateZ(-3deg)",
-							},
-							...(index === currentIndex && {
-								animation: `${pulse} 2s ease-in-out infinite`,
-							}),
-						}}
-					/>
-				))}
+				{/* Mobile Previous Button */}
+				<IconButton
+					onClick={prevSlide}
+					disabled={isTransitioning}
+					sx={{
+						"background":
+							"linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 252, 248, 0.8) 100%)",
+						"color": "rgba(46, 125, 50, 0.8)",
+						"backdropFilter": "blur(10px)",
+						"border": "1px solid rgba(46, 125, 50, 0.2)",
+						"boxShadow":
+							"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05)",
+						"borderRadius": "12px",
+						"width": "48px",
+						"height": "48px",
+						"&:hover": {
+							background:
+								"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
+							color: "white",
+							transform: "scale(1.05)",
+							boxShadow:
+								"0 8px 24px rgba(46, 125, 50, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1)",
+						},
+						"&:disabled": {
+							opacity: 0.4,
+							transform: "scale(0.95)",
+						},
+						"transition": "all 0.3s ease",
+					}}>
+					<ArrowBackIosNew sx={{ fontSize: "20px" }} />
+				</IconButton>
+
+				{/* Mobile Dots Indicator */}
+				<Box
+					sx={{
+						display: "flex",
+						gap: 1.5,
+						background:
+							"linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(46, 125, 50, 0.1) 100%)",
+						borderRadius: "20px",
+						p: 1.5,
+						backdropFilter: "blur(10px)",
+						border: "1px solid rgba(46, 125, 50, 0.1)",
+						boxShadow: "0 4px 16px rgba(46, 125, 50, 0.1)",
+					}}>
+					{carouselItems.map((_, index) => (
+						<Box
+							key={index}
+							onClick={() => goToSlide(index)}
+							sx={{
+								"width": index === currentIndex ? 24 : 8,
+								"height": 8,
+								"borderRadius": 4,
+								"background":
+									index === currentIndex
+										? "linear-gradient(135deg, rgba(46, 125, 50, 0.9) 0%, rgba(27, 94, 32, 0.8) 100%)"
+										: "linear-gradient(135deg, rgba(46, 125, 50, 0.3) 0%, rgba(27, 94, 32, 0.2) 100%)",
+								"cursor": "pointer",
+								"transition": "all 0.3s ease",
+								"border": "1px solid rgba(46, 125, 50, 0.2)",
+								"boxShadow":
+									index === currentIndex
+										? "0 2px 8px rgba(46, 125, 50, 0.4)"
+										: "0 1px 4px rgba(46, 125, 50, 0.2)",
+								"&:hover": {
+									background:
+										"linear-gradient(135deg, rgba(46, 125, 50, 0.8) 0%, rgba(27, 94, 32, 0.7) 100%)",
+									transform: "scale(1.2)",
+									boxShadow: "0 3px 12px rgba(46, 125, 50, 0.5)",
+								},
+								"&:active": {
+									transform: "scale(1.1)",
+								},
+							}}
+						/>
+					))}
+				</Box>
+
+				{/* Mobile Next Button */}
+				<IconButton
+					onClick={nextSlide}
+					disabled={isTransitioning}
+					sx={{
+						"background":
+							"linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 252, 248, 0.8) 100%)",
+						"color": "rgba(46, 125, 50, 0.8)",
+						"backdropFilter": "blur(10px)",
+						"border": "1px solid rgba(46, 125, 50, 0.2)",
+						"boxShadow":
+							"0 4px 16px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05)",
+						"borderRadius": "12px",
+						"width": "48px",
+						"height": "48px",
+						"&:hover": {
+							background:
+								"linear-gradient(135deg, rgba(46, 125, 50, 0.95) 0%, rgba(27, 94, 32, 0.9) 100%)",
+							color: "white",
+							transform: "scale(1.05)",
+							boxShadow:
+								"0 8px 24px rgba(46, 125, 50, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1)",
+						},
+						"&:disabled": {
+							opacity: 0.4,
+							transform: "scale(0.95)",
+						},
+						"transition": "all 0.3s ease",
+					}}>
+					<ArrowForwardIos sx={{ fontSize: "20px" }} />
+				</IconButton>
 			</Box>
-
-			{/* Progress Bar */}
-			<Box
-				sx={{
-					"position": "absolute",
-					"top": 0,
-					"left": 0,
-					"height": "4px",
-					"backgroundColor": "rgba(46, 125, 50, 0.8)",
-					"borderRadius": "0 0 4px 0",
-					"zIndex": 5,
-					"animation": isAutoPlaying
-						? "progressBar 5s linear infinite"
-						: "none",
-					"@keyframes progressBar": {
-						"0%": { width: "0%" },
-						"100%": { width: "100%" },
-					},
-				}}
-			/>
 		</Box>
 	);
 };

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { Container, Typography, Box, Paper, Divider } from "@mui/material";
-import SEOScript from "../../components/SEOScript";
+import SEOScript from "@/components/SEOScript";
 
 export default function TermsPage() {
 	useEffect(() => {
