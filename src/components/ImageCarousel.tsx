@@ -176,7 +176,7 @@ const ImageCarousel: React.FC = () => {
 				sx={{
 					"position": "relative",
 					"width": "100%",
-					"maxWidth": { xs: "100%", xl: "80%" }, // Limit width on very large screens
+					"maxWidth": { xs: "100%", xl: "100%" }, // Limit width on very large screens
 					"mx": "auto", // Center the container
 					"height": {
 						xs: "400px",
